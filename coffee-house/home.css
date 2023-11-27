@@ -14,6 +14,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body{
     max-width: 1440px;
     background-color: var(--background-body);
@@ -536,6 +540,10 @@ footer{
 .social svg:hover rect{
     stroke: var(--text-light);
     fill: var(--text-light);
+}
+
+.contact-info a{
+    text-decoration: none;
 }
 
 
