@@ -12,6 +12,7 @@
 
 *{
     box-sizing: border-box;
+    outline: solid red;
 }
 
 html {
@@ -20,6 +21,7 @@ html {
 
 body{
     max-width: 1440px;
+    
     background-color: var(--background-body);
     margin: 0px auto;
     padding-top: 20px;
@@ -28,13 +30,19 @@ body{
     padding-right: 40px;
 }
 
+main{
+    max-width: 1360px;
+}
+
 header{
+    width: 100%;
     height: 60px;
     display: flex;
+    justify-content: space-between;
 }
 
 nav{
-    width: 1188px;
+    gap:40px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -42,7 +50,6 @@ nav{
 
 .menu-item{
     align-self: center;
-    margin-right: 40px;
     text-decoration: none;
     color: #403F3D;
     font-family: 'Inter', sans-serif;
@@ -70,20 +77,15 @@ nav{
 }
 
 .menu-special-item{
-    display: grid;
-    grid-template-columns: 36px 36px;
-    height: 24px;
-    margin-right: 0px;
+    display: flex;
+    row-gap: 0px;
+    column-gap: 0px;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
-.menu-special-item svg{
-    justify-self: end;
-}
-
-.menu-special-item .underline{
-    grid-column-start: 1;
-    grid-column-end: 3;
-
+.pon{
+    margin-right: 8px;
 }
 
 .enjoy-coffee{
@@ -96,13 +98,14 @@ nav{
     border-radius: 40px;
     height: auto;
     margin-bottom: 100px;
+    gap: 40px;
 }
 
 .offer{
     display: flex;
     flex-direction: column;
-    width: 530px;
     gap: 40px;
+    max-width: 530px;
 }
 
 #enjoy{
@@ -117,9 +120,11 @@ nav{
     font-weight: 600;
     line-height: 105%;
     margin: 0px;
+    width: 100%;
 }
 
 #offer-description{
+    width: 100%;
     margin: 0px;
     align-self: stretch;
     color: var(--text-light);
@@ -131,7 +136,7 @@ nav{
 
 #menu-button{
     display: flex;
-    width: 200px;
+    max-width: 200px;
     padding: 20px 78px;
     justify-content: center;
     align-items: center;
@@ -184,39 +189,48 @@ nav{
 }
 
 #slider{
-    display: grid;
-    grid-template-columns: 104px auto 104px;
-    grid-template-rows: auto auto;
-    grid-template-areas:
-    "left-arrow product-slider right-arrow"
-    "control control control";
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
 }
 
 #left-arrow{
-    grid-area: left-arrow;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     cursor: pointer;
 }
 
 #product-slider{
-    grid-area: product-slider;
-    width: 100%;
-    height: 640px;
+    height: auto;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    align-content: center;
+    justify-content: center;
     gap: 20px;
     flex-wrap: wrap;
     margin-bottom: 40px;
 }
 
 .product-coffee{
-    width: 480px;
-    height: 480px;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+}
+
+.product-coffee:after{
+    position: absolute;
+    display: block;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: transform .5s linear;
+    background-image: url(./src/57d082ae9774ffeb8a409a788e05fef3.png);
 }
 
 .description-product{
@@ -266,11 +280,9 @@ nav{
 }
 
 #right-arrow{
-    grid-area: right-arrow;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     cursor: pointer;
 }
 
@@ -292,6 +304,7 @@ nav{
     margin: 0 auto;
     grid-column-start: 2;
     grid-column-end: 3;
+    justify-content: center;
 }
 
 .control{
@@ -394,14 +407,13 @@ nav{
 
 #mobile-app{
     display: flex;
-    max-width: 1360px;
-    max-height: auto;
-    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
     align-items: center;
     gap: 100px;
-    flex: 1 0 0;
     margin-bottom: 100px;
-    flex-wrap: wrap;
 }
 
 .offer-mobile{
@@ -471,7 +483,11 @@ nav{
 }
 
 .mobile-screen{
-    max-width: 630px;
+    width: 640px;
+
+    height: 100%;
+    aspect-ratio: 1;
+    background: url(./src/mobile-screens.png) center;
 }
 
 footer{
@@ -481,9 +497,11 @@ footer{
     display: flex;
     flex-direction: row;
     gap: 100px;
+    width: 100%;
 }
 
 .offer-footer{
+    width: 100%;
     max-width: 530px;
     display: flex;
     flex-direction: column;
@@ -514,6 +532,7 @@ footer{
     display: flex;
     flex-direction: column;
     gap: 40px;
+    width: 100%;
 }
 
 .contact-info{
