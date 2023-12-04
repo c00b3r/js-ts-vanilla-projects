@@ -88,6 +88,11 @@ nav{
     margin-right: 8px;
 }
 
+.button-burger{
+    display: none;
+    align-self: center;
+}
+
 .enjoy-coffee{
     display: flex;
     flex-wrap: wrap;
@@ -100,6 +105,7 @@ nav{
     margin-bottom: 100px;
     gap: 40px;
 }
+
 
 .offer{
     display: flex;
@@ -123,9 +129,14 @@ nav{
     width: 100%;
 }
 
+p{
+    margin: 0px;
+}
+
 #offer-description{
     width: 100%;
-    margin: 0px;
+    margin: 0px 0px;
+    padding: 0;
     align-self: stretch;
     color: var(--text-light);
     font-family: Inter;
@@ -170,10 +181,14 @@ nav{
     width: 20px;
 }
 
+
 #favorite-coffee{
+    display: flex;
+    flex-direction: column;
     width: 100%;
     height: auto;
     margin-bottom: 100px;
+    gap:40px;
 }
 
 #favorite-description{
@@ -210,7 +225,6 @@ nav{
     justify-content: center;
     gap: 20px;
     flex-wrap: wrap;
-    margin-bottom: 40px;
 }
 
 .product-coffee{
@@ -240,7 +254,6 @@ nav{
     gap: 16px;
     align-self: stretch;
     max-width: 480px;
-    height: 140px;
 }
 
 .product-name{
@@ -302,8 +315,6 @@ nav{
     display: flex;
     gap: 12px;
     margin: 0 auto;
-    grid-column-start: 2;
-    grid-column-end: 3;
     justify-content: center;
 }
 
@@ -405,25 +416,23 @@ nav{
     background-image: url(src/about-4.png);
 }
 
+
 #mobile-app{
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     width: 100%;
     justify-content: space-between;
-    align-items: center;
     gap: 100px;
     margin-bottom: 100px;
+    flex-wrap: nowrap;
 }
 
 .offer-mobile{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
     gap: 40px;
-    flex: 1 0 0;
-    max-width: 630px;
+    width: 50%;
 }
 
 .offer-header{
@@ -454,7 +463,7 @@ nav{
 .download-mobile{
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 20px;
 }
 
@@ -462,7 +471,7 @@ nav{
     width: 200px;
     height: 64px;
     cursor: pointer;
-    background: url(./src/button-app-store.svg) ;
+    background: url(./src/button-app-store.svg);
     transition: 1s ease;
 }
 
@@ -483,12 +492,12 @@ nav{
 }
 
 .mobile-screen{
-    width: 640px;
-
-    height: 100%;
+    width: 630px;
+    height: 630px;
     aspect-ratio: 1;
-    background: url(./src/mobile-screens.png) center;
+    background: url(./src/mobile-screens.png) center no-repeat;
 }
+
 
 footer{
     background-color: var(--background-container);
@@ -567,6 +576,7 @@ footer{
 .address{
     max-width: max-content;
 }
+
 .address:hover .underline{
     width: 100%;
     opacity: 1;
@@ -605,6 +615,41 @@ footer{
     text-decoration: none;
 }
 
+@media (max-width: 1080px){
+    #mobile-app{
+        display: flex;
+        flex-direction: column;
+        gap: 100px;
+    }
+
+    .offer-mobile{
+        width: 100%;
+    }
+
+    .mobile-screen{
+        align-self: center;
+    }
+}
+
+@media (max-width: 642px){
+    .mobile-screen{
+       background-size: 400px 400px;
+       width: 400px;
+       height: 400px;
+    }
+}
+
+
+@media (max-width: 450px){
+    h1{
+        font-size: 40px;
+    }
+
+    h2{
+        font-size: 40px;
+    }
+}
+
 #container-menu{
     display: flex;
     flex-direction: column;
@@ -624,8 +669,8 @@ footer{
     color: var(--text-dark);
     text-align: center;
     font-feature-settings: 'clig' off, 'liga' off;
-    width: 800px;
     height: auto;
+    max-width: 800px;
     /* Desktop/Heading/heading-2 */
     font-family: Inter;
     font-size: 60px;
@@ -637,7 +682,6 @@ footer{
 
 #tabs-menu{
     display: flex;
-    flex-direction: row;
     gap:16px;
 }
 
@@ -661,6 +705,8 @@ footer{
 
 .tab span{
     display: flex;
+    width: 30px;
+    height: 30px;
     padding: 3px 7px;
     justify-content: center;
     align-items: center;
@@ -773,5 +819,215 @@ main{
     border-radius: 2px;
     background-color: #403F3D;
     transition: 1s ease;
+}
+
+@media (max-width: 768px) {
+    .menu-item{ 
+        display: none;
+    }
+
+    .button-burger{
+        display: block;
+    }
+
+    .enjoy-coffee{
+        padding: 100px 60px;
+    }
+
+    #menu-button{
+        padding-left: 60px;
+        padding-right: 60px;
+    }
+    
+    #menu-button svg{
+        opacity: 1;
+        width: 20px;
+    }
+
+    .arrow:hover > rect {
+        fill: var(--text-light);
+    }
+    
+    .arrow:hover > path {
+        stroke: var(--text-dark);
+    }
+
+    #people-gallery{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        gap:40px;
+    }
+
+    .item2{
+        display: none;
+    }
+
+    .item3{
+        display: none;
+    }
+
+    .people-gallery-item:nth-child(1), .people-gallery-item:nth-child(4){
+        height: 590px;
+        width: auto;
+    }
+
+    .people-gallery-item:hover:after{
+        transform:scale(1.1);
+    }
+
+    .mobile-screen{
+        max-width: 630px;
+        max-height: 630px;
+    }
+
+    footer{
+        flex-wrap: wrap;
+        padding: 100px 60px;
+        flex-direction: column;
+        gap: 100px;
+    }
+
+    .grid-item:hover .item-photo img{
+        transform: scale(1.1);
+    }
+
+    .hidden-item{
+        display: none;
+    }
+
+    .update{
+        width: 60px;
+        height: 60px;
+        align-self: center;
+        background: url(./src/button-icon-refresh.svg) no-repeat;
+    }
+
+    .social svg path{
+        transition: none;
+    }
+    
+    .social svg rect{
+        transition: none;
+    }
+    
+    .social svg:hover path{
+        stroke: var(--text-light);
+        
+    }
+    
+    .social svg:hover rect{
+        stroke: var(--text-light);
+        fill: var(--border-dark);
+    }
+
+    .map:hover .underline{
+        width: 0%;
+        opacity: 0;
+        background-color: var(--text-light);
+    }
+
+    .address:hover .underline{
+        width: 0%;
+        opacity: 0;
+        background-color: var(--text-light);
+    }
+
+    .download-mobile{
+        box-sizing: content-box;
+    }
+
+    .appstore:hover {
+        background: url(./src/button-app-store.svg);
+    }
+    
+    .google-play:hover{
+        background: url(./src/button-google-play.svg);
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .enjoy-coffee{
+        padding: 60px 16px;
+    }
+
+    .enjoy-coffee h1{
+        font-size: 42px !important;
+    }
+
+    #favorite-description{
+        font-size: 32px;
+    }
+
+    #left-arrow{
+        display: none;
+    }
+
+    #right-arrow{
+        display: none;
+    }
+
+    #about-description{
+        font-size: 32px;
+    }
+
+    .offer-header{
+        font-size:32px;
+    }
+
+    #mobile-app{
+        gap:40px;
+    }
+
+    .mobile-screen{
+        width: 348px;
+        height: 348px;
+        background-size: 348px 348px;
+    }
+    
+    footer{
+        padding: 60px 16px;
+        gap:40px;
+    }
+
+    .offer-footer-desc{
+        font-size: 32px;
+    }
+
+    .download-mobile{
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .download-mobile a{
+        width: fit-content;
+    }
+
+    #text-menu{
+        font-size: 32px;
+    }
+
+    #tabs-menu{
+        gap: 8px;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    #tab span{
+        width:15px;
+        height: 24px;
+    }
+
+    .item-photo img{
+        width: 100%;
+    }
 }
 
