@@ -114,7 +114,7 @@ nav{
     max-width: 530px;
 }
 
-#enjoy{
+.enjoy{
     color: var(--text-accent);
     font-style: italic;
 }
