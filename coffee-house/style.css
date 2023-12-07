@@ -20,6 +20,7 @@ html {
 
 body{
     max-width: 1440px;
+    
     background-color: var(--background-body);
     margin: 0px auto;
     padding-top: 20px;
@@ -28,13 +29,20 @@ body{
     padding-right: 40px;
 }
 
+main{
+    margin-top: 20px;
+    max-width: 1360px;
+}
+
 header{
+    width: 100%;
     height: 60px;
     display: flex;
+    justify-content: space-between;
 }
 
 nav{
-    width: 1188px;
+    gap:40px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -42,7 +50,6 @@ nav{
 
 .menu-item{
     align-self: center;
-    margin-right: 40px;
     text-decoration: none;
     color: #403F3D;
     font-family: 'Inter', sans-serif;
@@ -70,20 +77,20 @@ nav{
 }
 
 .menu-special-item{
-    display: grid;
-    grid-template-columns: 36px 36px;
-    height: 24px;
-    margin-right: 0px;
+    display: flex;
+    row-gap: 0px;
+    column-gap: 0px;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
-.menu-special-item svg{
-    justify-self: end;
+.pon{
+    margin-right: 8px;
 }
 
-.menu-special-item .underline{
-    grid-column-start: 1;
-    grid-column-end: 3;
-
+.button-burger{
+    display: none;
+    align-self: center;
 }
 
 .enjoy-coffee{
@@ -92,20 +99,22 @@ nav{
     margin-top: 20px;
     width: 100%;
     padding: 100px;
-    background-image: url(./src/53de184b52e70f8c6142237a41f29303.jpg);
+    background: url(./src/c8eddb5caed23bba7b8523eb9aea9192.png) center / cover no-repeat;
     border-radius: 40px;
     height: auto;
     margin-bottom: 100px;
+    gap: 40px;
 }
+
 
 .offer{
     display: flex;
     flex-direction: column;
-    width: 530px;
     gap: 40px;
+    max-width: 530px;
 }
 
-#enjoy{
+.enjoy{
     color: var(--text-accent);
     font-style: italic;
 }
@@ -116,9 +125,18 @@ nav{
     font-size: 72px;
     font-weight: 600;
     line-height: 105%;
+    margin: 0px;
+    width: 100%;
+}
+
+p{
+    margin: 0px;
 }
 
 #offer-description{
+    width: 100%;
+    margin: 0px 0px;
+    padding: 0;
     align-self: stretch;
     color: var(--text-light);
     font-family: Inter;
@@ -129,7 +147,7 @@ nav{
 
 #menu-button{
     display: flex;
-    width: 200px;
+    max-width: 200px;
     padding: 20px 78px;
     justify-content: center;
     align-items: center;
@@ -163,10 +181,14 @@ nav{
     width: 20px;
 }
 
+
 #favorite-coffee{
+    display: flex;
+    flex-direction: column;
     width: 100%;
     height: auto;
     margin-bottom: 100px;
+    gap:40px;
 }
 
 #favorite-description{
@@ -182,39 +204,47 @@ nav{
 }
 
 #slider{
-    display: grid;
-    grid-template-columns: 104px auto 104px;
-    grid-template-rows: auto auto;
-    grid-template-areas:
-    "left-arrow product-slider right-arrow"
-    "control control control";
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
 }
 
 #left-arrow{
-    grid-area: left-arrow;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     cursor: pointer;
 }
 
 #product-slider{
-    grid-area: product-slider;
-    width: 100%;
-    height: 640px;
+    height: auto;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    align-content: center;
+    justify-content: center;
     gap: 20px;
     flex-wrap: wrap;
-    margin-bottom: 40px;
 }
 
 .product-coffee{
-    width: 480px;
-    height: 480px;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+}
+
+.product-coffee:after{
+    position: absolute;
+    display: block;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: transform .5s linear;
+    background-image: url(./src/57d082ae9774ffeb8a409a788e05fef3.png);
 }
 
 .description-product{
@@ -224,7 +254,6 @@ nav{
     gap: 16px;
     align-self: stretch;
     max-width: 480px;
-    height: 140px;
 }
 
 .product-name{
@@ -264,11 +293,9 @@ nav{
 }
 
 #right-arrow{
-    grid-area: right-arrow;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     cursor: pointer;
 }
 
@@ -288,8 +315,7 @@ nav{
     display: flex;
     gap: 12px;
     margin: 0 auto;
-    grid-column-start: 2;
-    grid-column-end: 3;
+    justify-content: center;
 }
 
 .control{
@@ -309,71 +335,104 @@ nav{
     gap: 40px;
     width: 100%;
     height: auto;
+    margin-bottom: 100px;
 }
 
 #about-description{
-    color: var(--text-dark);
+    color: var(--text-dark, #403F3D);
     font-feature-settings: 'clig' off, 'liga' off;
+
+    /* Desktop/Heading/heading-2 */
     font-family: Inter;
     font-size: 60px;
     font-style: normal;
     font-weight: 600;
-    line-height: 125%;
-    align-self: stretch;
+    line-height: 125%; /* 75px */
+    margin: 0;
 }
 
-#people{
-    margin-bottom: 100px;
-    height: auto;
-    display: flex;
-    flex-direction: row;
-    gap: 40px;
-    align-self: stretch;
-}
-
-.flex-people{
-    width: 100%;
+#people-gallery{
     display: flex;
     flex-direction: column;
-    gap: 40px;
-}
-
-.flex-people div img{
+    justify-content: space-between;
+    align-items: stretch;
+    flex-wrap: wrap;
     width: 100%;
-    cursor: pointer;
-    transition: 1s; 
-    transform: scale(1.1);
+    aspect-ratio: 1360/1060;
+    gap: 3%;
+    padding: 0px;
+    margin: 0px;
+    border: none;
 }
 
-.flex-people div{
+.people-gallery-item{
+    width: 48.5%;
+    position: relative;
     border-radius: 20px;
-    overflow: hidden;     
+    transition: background-size .3s linear;
+    overflow: hidden;
 }
 
-.flex-people div:hover img{
-    transform: scale(1.03);
+.people-gallery-item:nth-child(1), .people-gallery-item:nth-child(4){
+    aspect-ratio: 660/590;
 }
+
+.people-gallery-item:nth-child(2), .people-gallery-item:nth-child(3) {
+    aspect-ratio: 660/430;
+}
+
+.people-gallery-item:after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 20px;
+    transform: scale(1.1);
+    transition: transform .3s linear;
+}
+
+.people-gallery-item:hover:after{
+    transform:scale(1)
+}
+
+.item1:after{
+    background-image: url(src/about-1.png);
+}
+
+.item2:after{
+    background-image: url(src/about-2.png);
+}
+
+.item3:after{
+    background-image: url(src/about-3.png);
+}
+
+.item4:after{
+    background-image: url(src/about-4.png);
+}
+
 
 #mobile-app{
     display: flex;
-    max-width: 1360px;
-    max-height: auto;
-    justify-content: center;
-    align-items: center;
-    gap: 100px;
-    flex: 1 0 0;
-    margin-bottom: 100px;
     flex-wrap: wrap;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    gap: 100px;
+    margin-bottom: 100px;
+    flex-wrap: nowrap;
 }
 
 .offer-mobile{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
     gap: 40px;
-    flex: 1 0 0;
-    max-width: 630px;
+    width: 50%;
 }
 
 .offer-header{
@@ -386,6 +445,7 @@ nav{
     font-style: normal;
     font-weight: 600;
     line-height: 125%;
+    margin: 0px;
 }
 
 .offer-description{
@@ -403,7 +463,7 @@ nav{
 .download-mobile{
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 20px;
 }
 
@@ -411,7 +471,7 @@ nav{
     width: 200px;
     height: 64px;
     cursor: pointer;
-    background: url(./src/button-app-store.svg) ;
+    background: url(./src/button-app-store.svg);
     transition: 1s ease;
 }
 
@@ -432,8 +492,12 @@ nav{
 }
 
 .mobile-screen{
-    max-width: 630px;
+    width: 630px;
+    height: 630px;
+    aspect-ratio: 1;
+    background: url(./src/mobile-screens.png) center no-repeat;
 }
+
 
 footer{
     background-color: var(--background-container);
@@ -442,9 +506,11 @@ footer{
     display: flex;
     flex-direction: row;
     gap: 100px;
+    width: 100%;
 }
 
 .offer-footer{
+    width: 100%;
     max-width: 530px;
     display: flex;
     flex-direction: column;
@@ -471,9 +537,11 @@ footer{
 }
 
 .contact{
+    justify-content: center;
     display: flex;
     flex-direction: column;
     gap: 40px;
+    width: 100%;
 }
 
 .contact-info{
@@ -508,6 +576,7 @@ footer{
 .address{
     max-width: max-content;
 }
+
 .address:hover .underline{
     width: 100%;
     opacity: 1;
@@ -546,6 +615,41 @@ footer{
     text-decoration: none;
 }
 
+@media (max-width: 1080px){
+    #mobile-app{
+        display: flex;
+        flex-direction: column;
+        gap: 100px;
+    }
+
+    .offer-mobile{
+        width: 100%;
+    }
+
+    .mobile-screen{
+        align-self: center;
+    }
+}
+
+@media (max-width: 642px){
+    .mobile-screen{
+       background-size: 400px 400px;
+       width: 400px;
+       height: 400px;
+    }
+}
+
+
+@media (max-width: 450px){
+    h1{
+        font-size: 40px;
+    }
+
+    h2{
+        font-size: 40px;
+    }
+}
+
 #container-menu{
     display: flex;
     flex-direction: column;
@@ -565,19 +669,19 @@ footer{
     color: var(--text-dark);
     text-align: center;
     font-feature-settings: 'clig' off, 'liga' off;
-    width: 800px;
     height: auto;
+    max-width: 800px;
     /* Desktop/Heading/heading-2 */
     font-family: Inter;
     font-size: 60px;
     font-style: normal;
     font-weight: 600;
     line-height: 125%; /* 75px */
+    margin: 0px;
 }
 
 #tabs-menu{
     display: flex;
-    flex-direction: row;
     gap:16px;
 }
 
@@ -601,6 +705,8 @@ footer{
 
 .tab span{
     display: flex;
+    width: 30px;
+    height: 30px;
     padding: 3px 7px;
     justify-content: center;
     align-items: center;
@@ -618,39 +724,37 @@ footer{
 }
 
 #grid-menu{
-    max-width: 1360px;
-    display: grid;
-    grid-template-columns: repeat(4,  1fr);
-    grid-template-rows: repeat(2, 1fr);
+    display: flex;
+    flex-wrap: wrap;
     gap: 40px;
+    justify-content: center;
 }
 
 .grid-item{
-    justify-items: stretch;
     display: flex;
-    flex-direction: column;
-    gap: 0px;
-    display: flex;
-    width: auto;
     flex-direction: column;
     align-items: center;
+    gap: 20px;
+    min-width: 310px;
+    max-width: 310px;
+    border: 1px solid var(--border-light);
     border-radius: 40px;
-    border: 1px solid var(--border-light, #C1B6AD);
 }
 
 .item-photo{
-    border-radius: 40px;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
     overflow: hidden;
-    cursor: pointer;
-    width: auto;
+    border-radius: 40px;
 }
 
 .item-photo img{
+    transition: .5s ease;
     transform: scale(1.1);
-    transition: 1s ease;
 }
 
-.item-photo:hover img{
+.grid-item:hover .item-photo img{
     transform: scale(1);
 }
 
@@ -715,5 +819,215 @@ main{
     border-radius: 2px;
     background-color: #403F3D;
     transition: 1s ease;
+}
+
+@media (max-width: 768px) {
+    .menu-item{ 
+        display: none;
+    }
+
+    .button-burger{
+        display: block;
+    }
+
+    .enjoy-coffee{
+        padding: 100px 60px;
+    }
+
+    #menu-button{
+        padding-left: 60px;
+        padding-right: 60px;
+    }
+    
+    #menu-button svg{
+        opacity: 1;
+        width: 20px;
+    }
+
+    .arrow:hover > rect {
+        fill: var(--text-light);
+    }
+    
+    .arrow:hover > path {
+        stroke: var(--text-dark);
+    }
+
+    #people-gallery{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        gap:40px;
+    }
+
+    .item2{
+        display: none;
+    }
+
+    .item3{
+        display: none;
+    }
+
+    .people-gallery-item:nth-child(1), .people-gallery-item:nth-child(4){
+        height: 590px;
+        width: auto;
+    }
+
+    .people-gallery-item:hover:after{
+        transform:scale(1.1);
+    }
+
+    .mobile-screen{
+        max-width: 630px;
+        max-height: 630px;
+    }
+
+    footer{
+        flex-wrap: wrap;
+        padding: 100px 60px;
+        flex-direction: column;
+        gap: 100px;
+    }
+
+    .grid-item:hover .item-photo img{
+        transform: scale(1.1);
+    }
+
+    .hidden-item{
+        display: none;
+    }
+
+    .update{
+        width: 60px;
+        height: 60px;
+        align-self: center;
+        background: url(./src/button-icon-refresh.svg) no-repeat;
+    }
+
+    .social svg path{
+        transition: none;
+    }
+    
+    .social svg rect{
+        transition: none;
+    }
+    
+    .social svg:hover path{
+        stroke: var(--text-light);
+        
+    }
+    
+    .social svg:hover rect{
+        stroke: var(--text-light);
+        fill: var(--border-dark);
+    }
+
+    .map:hover .underline{
+        width: 0%;
+        opacity: 0;
+        background-color: var(--text-light);
+    }
+
+    .address:hover .underline{
+        width: 0%;
+        opacity: 0;
+        background-color: var(--text-light);
+    }
+
+    .download-mobile{
+        box-sizing: content-box;
+    }
+
+    .appstore:hover {
+        background: url(./src/button-app-store.svg);
+    }
+    
+    .google-play:hover{
+        background: url(./src/button-google-play.svg);
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .enjoy-coffee{
+        padding: 60px 16px;
+    }
+
+    .enjoy-coffee h1{
+        font-size: 42px !important;
+    }
+
+    #favorite-description{
+        font-size: 32px;
+    }
+
+    #left-arrow{
+        display: none;
+    }
+
+    #right-arrow{
+        display: none;
+    }
+
+    #about-description{
+        font-size: 32px;
+    }
+
+    .offer-header{
+        font-size:32px;
+    }
+
+    #mobile-app{
+        gap:40px;
+    }
+
+    .mobile-screen{
+        width: 348px;
+        height: 348px;
+        background-size: 348px 348px;
+    }
+    
+    footer{
+        padding: 60px 16px;
+        gap:40px;
+    }
+
+    .offer-footer-desc{
+        font-size: 32px;
+    }
+
+    .download-mobile{
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .download-mobile a{
+        width: fit-content;
+    }
+
+    #text-menu{
+        font-size: 32px;
+    }
+
+    #tabs-menu{
+        gap: 8px;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    #tab span{
+        width:15px;
+        height: 24px;
+    }
+
+    .item-photo img{
+        width: 100%;
+    }
 }
 
