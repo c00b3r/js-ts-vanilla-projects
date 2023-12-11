@@ -118,6 +118,7 @@ nav{
 
 
 .burger-menu{
+    overflow: hidden;
     padding: 60px 40px;
     position: fixed;
     top: 80px;
@@ -131,6 +132,7 @@ nav{
     gap: 100px;
     z-index: 99;
     height: auto;
+    
 }
 
 .burger-menu nav{
@@ -884,6 +886,15 @@ main{
 @media (max-width: 768px) {
     .menu-item{ 
         display: none;
+    }
+
+    .menu-special-item:hover .underline{
+        width: 0;
+    }
+
+    .menu-special-item svg{
+        width: 40px;
+        height: 40px;
     }
 
     .button-burger{
