@@ -888,6 +888,11 @@ main{
     transition: 1s ease;
 }
 
+@media (min-width: 769px) {
+    .burger-menu{
+        display: none;
+    }
+}
 @media (max-width: 768px) {
     .menu-item{ 
         display: none;
