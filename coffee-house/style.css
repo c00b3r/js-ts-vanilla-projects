@@ -118,6 +118,7 @@ nav{
 
 
 .burger-menu{
+    display: flex;
     overflow: hidden;
     padding: 60px 40px;
     position: fixed;
@@ -126,13 +127,17 @@ nav{
     left: 0;
     right: 0;
     background-color: var(--background-body);
-    display:  none;
     flex-direction: column;
     width: 100%;
     gap: 100px;
     z-index: 99;
     height: auto;
-    
+    transform: translateX(100%);
+    transition: transform 0.2s;
+}
+
+.showMenu {
+    transform: translateX(0);
 }
 
 .burger-menu nav{

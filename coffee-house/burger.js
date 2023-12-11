@@ -6,11 +6,11 @@ const menuItem = document.querySelectorAll('.menu-item')
 function toggleMenu() {
     if  (burgerButton.classList.contains('active-burger-button')){
         burgerButton.classList.remove('active-burger-button')
-        burgerMenu.style.display = 'none'
+        burgerMenu.classList.remove('showMenu')
         body.style.overflow = 'scroll'
     } else {
         burgerButton.classList.add('active-burger-button')
-        burgerMenu.style.display = 'flex'
+        burgerMenu.classList.add('showMenu')
         body.style.overflow = 'hidden'
     }
 }
