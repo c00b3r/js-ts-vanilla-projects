@@ -36,15 +36,15 @@ main{
 
 header{
     width: 100%;
-    height: 60px;
+    height: auto;
     display: flex;
     justify-content: space-between;
 }
 
 nav{
+    height: 60px;
     gap:40px;
     display: flex;
-    justify-content: center;
     align-items: center;
 }
 
@@ -89,9 +89,71 @@ nav{
 }
 
 .button-burger{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--border-dark);
+    border-radius: 100px ;
     display: none;
     align-self: center;
 }
+
+.button-burger-line{
+    transition: transform 0.25s;
+}
+
+.active-burger-button .button-burger-line:nth-of-type(1) {
+    transform-origin: center center;
+    transform: rotate(-45deg) translate(-10%, 150%);
+}
+
+.active-burger-button .button-burger-line:nth-of-type(2) {
+    transform-origin: center center;
+    transform: rotate(45deg) translate(-10%, -150%);
+}
+
+
+.burger-menu{
+    overflow: hidden;
+    padding: 60px 40px;
+    position: fixed;
+    top: 80px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--background-body);
+    display:  none;
+    flex-direction: column;
+    width: 100%;
+    gap: 100px;
+    z-index: 99;
+    height: auto;
+    
+}
+
+.burger-menu nav{
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+
+.burger-menu .menu-item{
+    color: var(--text-dark, #403F3D);
+    text-align: center;
+    font-feature-settings: 'clig' off, 'liga' off;
+    /* Desktop/Action/burger-link */
+    font-family: Inter;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 125%;
+}
+
 
 .enjoy-coffee{
     display: flex;
@@ -826,8 +888,17 @@ main{
         display: none;
     }
 
+    .menu-special-item:hover .underline{
+        width: 0;
+    }
+
+    .menu-special-item svg{
+        width: 40px;
+        height: 40px;
+    }
+
     .button-burger{
-        display: block;
+        display: flex;
     }
 
     .enjoy-coffee{
@@ -944,6 +1015,14 @@ main{
     .google-play:hover{
         background: url(./src/button-google-play.svg);
     }
+
+    .burger-menu nav .menu-item{
+        display: flex;
+    }
+
+    .burger-menu .menu-special-item{
+        display: flex;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1028,6 +1107,10 @@ main{
 
     .item-photo img{
         width: 100%;
+    }
+
+    .burger-menu{
+        padding: 60px 16px;
     }
 }
 
