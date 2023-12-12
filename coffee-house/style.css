@@ -136,6 +136,17 @@ nav{
     transition: transform 0.2s;
 }
 
+.menu-item-burger{
+    align-self: center;
+    text-decoration: none;
+    color: #403F3D;
+    font-family: 'Inter', sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%;
+    height: 24px;
+}
 .showMenu {
     transform: translateX(0);
 }

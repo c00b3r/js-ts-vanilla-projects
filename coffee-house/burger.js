@@ -1,7 +1,7 @@
 const burgerButton = document.querySelector(".button-burger");
 const burgerMenu = document.querySelector(".burger-menu");
 const body = document.querySelector("body");
-const menuItem = document.querySelectorAll(".menu-item");
+const menuItem = document.querySelectorAll(".menu-item-burger");
 
 function toggleMenu() {
   if (burgerButton.classList.contains("active-burger-button")) {
