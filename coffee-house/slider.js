@@ -46,22 +46,9 @@ control.forEach((element, index)=>{
 }
 
 function makeTimer(){
-    clearInterval(timer) //Очистим интервал, это позволит прервать его работу и отменить перелистывание
+    clearInterval(timer) 
     timer = setInterval(showNextSlide,5000);
 }
-
-function handleSwipe() {
-    const swipeLength = touchEndX - touchStartX;
-    if (touchEndX < touchStartX && swipeLength < -60) {
-      sliderRight.click();
-      return true;
-    }
-    if (touchEndX > touchStartX && swipeLength > 60) {
-      sliderLeft.click();
-      return true;
-    }
-    return false;
-  }
 
 
 

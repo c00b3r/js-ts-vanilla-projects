@@ -858,6 +858,12 @@ footer{
     font-style: normal;
     font-weight: 600;
     line-height: 150%; 
+    transition: .5s;
+}
+
+.tab:hover{
+    background-color: var(--border-dark);
+    color: var(--text-light);
 }
 
 .tab span{
@@ -888,6 +894,7 @@ footer{
 }
 
 .grid-item{
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: center;
