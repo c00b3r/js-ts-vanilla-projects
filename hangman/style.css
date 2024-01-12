@@ -1,0 +1,102 @@
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  padding: 20px 40px;
+}
+
+.hangman-head {
+  position: absolute;
+  top: 170px;
+  left: 300px;
+}
+
+.hangman-body {
+  position: absolute;
+  top: 270px;
+  left: 350px;
+}
+
+.hangman-arm-left {
+  position: absolute;
+  top: 270px;
+  left: 285px;
+}
+
+.hangman-arm-right {
+  position: absolute;
+  top: 270px;
+  left: 350px;
+}
+
+.hangman-leg-left {
+  position: absolute;
+  top: 400px;
+  left: 285px;
+}
+
+.hangman-leg-right {
+  position: absolute;
+  top: 400px;
+  left: 350px;
+}
+
+.hangman-guess {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 100px;
+  justify-content: center;
+  align-items: center;
+}
+
+.hangman-guess__tabs {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  justify-content: center;
+}
+
+.tab {
+  width: 40px;
+  height: 2px;
+  background-color: black;
+}
+
+.text {
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: black;
+  text-align: center;
+}
+
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.keyboard__row {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.keyboard__letter {
+  display: flex;
+  width: 50px;
+  height: 50px;
+  background-color: rgb(23, 89, 165);
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  cursor: pointer;
+}
