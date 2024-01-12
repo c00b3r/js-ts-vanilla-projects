@@ -146,3 +146,60 @@
 .modal__button-again:hover {
   background-color: rgb(14, 55, 102);
 }
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 540px) {
+  .container {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .gallows {
+    width: 300px;
+    height: 300px;
+  }
+
+  .hangman-guess {
+    padding: 10px 5px;
+  }
+
+  .keyboard {
+    gap: 5px;
+    align-items: center;
+  }
+
+  .keyboard__row {
+    gap: 5px;
+  }
+
+  .keyboard__letter {
+    width: 35px;
+    height: 35px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+  }
+
+  .hangman__game-proccess {
+    text-align: center;
+  }
+}
+
+@media (min-width: 540px) and (max-width: 960px) {
+  .container {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .hangman__game-proccess {
+    text-align: center;
+  }
+
+  .gallows {
+    width: 350px;
+    height: 350px;
+  }
+}

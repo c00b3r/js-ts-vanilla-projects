@@ -4,36 +4,36 @@ body.insertAdjacentHTML(
   `        <div class="container">
   <div class="hangman">
     <div class="hangman__game-proccess">
-      <img src="src/gallows.svg" alt="gallows" />
+      <img src="src/gallows.svg" alt="gallows" class="gallows"/>
       <img
         src="src/hangman-head.svg"
         alt="hangaman head"
-        class="hangman-head"
+        class="hangman-head hidden"
       />
       <img
         src="src/hangman-body.svg"
         alt="hangman body"
-        class="hangman-body"
+        class="hangman-body hidden"
       />
       <img
         src="src/hangman-arm-left.png"
         alt="hangaman left arm"
-        class="hangman-arm-left"
+        class="hangman-arm-left hidden"
       />
       <img
         src="./src/hangman-arm-right.png"
         alt="hangman arm right"
-        class="hangman-arm-right"
+        class="hangman-arm-right hidden"
       />
       <img
         src="./src/hangman-leg-left.png"
         alt="hangman left leg"
-        class="hangman-leg-left"
+        class="hangman-leg-left hidden"
       />
       <img
         src="./src/hangman-leg-right.png"
         alt="hangman leg right"
-        class="hangman-leg-right"
+        class="hangman-leg-right hidden"
       />
     </div>
     <div class="hangman__header"></div>
@@ -96,3 +96,12 @@ body.insertAdjacentHTML(
   </div>
 </div>`
 );
+
+const keywords = document.querySelectorAll(".keyboard__letter");
+
+console.log(keywords);
+for (let i = 0; i < keywords.length; i++) {
+  keywords[i].addEventListener("click", function () {
+    console.log(keywords[i].textContent);
+  });
+}
