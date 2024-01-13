@@ -65,6 +65,7 @@
   width: 40px;
   height: 2px;
   background-color: black;
+  align-self: flex-end;
 }
 
 .text {
@@ -202,4 +203,10 @@
     width: 350px;
     height: 350px;
   }
+}
+
+.tabs__word {
+  font-size: 40px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
 }

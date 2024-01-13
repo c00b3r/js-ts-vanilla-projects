@@ -1,33 +1,33 @@
 const hangmanWords = [
-  { word: "Sun", hint: "The source of light and warmth for our planet." },
-  { word: "Guitar", hint: "A stringed musical instrument." },
+  { word: "SUN", hint: "The source of light and warmth for our planet." },
+  { word: "GUITAR", hint: "A stringed musical instrument." },
   {
-    word: "Pizza",
+    word: "PIZZA",
     hint: "A popular Italian dish with dough, sauce, and toppings.",
   },
   {
-    word: "Screen",
+    word: "SCREEN",
     hint: "The part of a device where information is displayed.",
   },
   {
-    word: "Aviation",
+    word: "AVIATION",
     hint: "The general term for aviation technologies and flights.",
   },
   {
-    word: "Library",
+    word: "LIBRARY",
     hint: "A place where books are stored and provided for reading.",
   },
   {
-    word: "Astronomy",
+    word: "ASTRONOMY",
     hint: "The science that studies celestial bodies and cosmic phenomena.",
   },
-  { word: "Chocolate", hint: "A sweet product made from cocoa and sugar." },
+  { word: "CHOCOLATE", hint: "A sweet product made from cocoa and sugar." },
   {
-    word: "Robot",
+    word: "ROBOT",
     hint: "A machine capable of performing various tasks automatically.",
   },
   {
-    word: "Journey",
+    word: "JOURNEY",
     hint: "The act of moving from one place to another, typically for leisure or exploration.",
   },
 ];
@@ -80,7 +80,7 @@ body.insertAdjacentHTML(
       Hint: A popular Italian dish with dough, sauce, and toppings.
     </div>
     <div class="hangman-guess__counter text">
-      Try: <span style="color: red">1 / 6</span>
+      Try: <span style="color: red">0 / 6</span>
     </div>
     <div class="keyboard">
       <div class="keyboard__row">
@@ -133,21 +133,35 @@ const tabsContainer = document.querySelector(".hangman-guess__tabs");
 for (let i = 0; i < hiddenWord.length; i++) {
   tabsContainer.insertAdjacentHTML("beforeend", `<div class="tab"></div>`);
 }
+const hint = document.querySelector(".hangman-guess__hint");
+hint.textContent = `Hint: ${hangmanWords[randomInt].hint}`;
+const tabs = document.querySelectorAll(".tab");
+console.log(tabs.length);
 
 console.log(hiddenWord);
-
-{
-  /* <div class="tab"></div>
-      <div class="tab"></div>
-      <div class="tab"></div>
-      <div class="tab"></div>
-      <div class="tab"></div> */
-}
 
 const keywords = document.querySelectorAll(".keyboard__letter");
 
 for (let i = 0; i < keywords.length; i++) {
   keywords[i].addEventListener("click", function () {
+    let position = function (mainString, subString) {
+      let indexes = [];
+      let index = mainString.indexOf(subString);
+
+      while (index !== -1) {
+        indexes.push(index);
+        index = mainString.indexOf(subString, index + 1);
+      }
+
+      return indexes;
+    };
+    let indexOfWord = position(hiddenWord, keywords[i].textContent);
+    indexOfWord.map((element) => {
+      tabs[element].textContent = keywords[i].textContent;
+      tabs[element].classList.remove("tab");
+      tabs[element].classList.add("tabs__word");
+    });
+    console.log(indexOfWord);
     console.log(keywords[i].textContent);
   });
 }
