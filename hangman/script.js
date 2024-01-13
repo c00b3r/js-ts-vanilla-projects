@@ -1,3 +1,37 @@
+const hangmanWords = [
+  { word: "Sun", hint: "The source of light and warmth for our planet." },
+  { word: "Guitar", hint: "A stringed musical instrument." },
+  {
+    word: "Pizza",
+    hint: "A popular Italian dish with dough, sauce, and toppings.",
+  },
+  {
+    word: "Screen",
+    hint: "The part of a device where information is displayed.",
+  },
+  {
+    word: "Aviation",
+    hint: "The general term for aviation technologies and flights.",
+  },
+  {
+    word: "Library",
+    hint: "A place where books are stored and provided for reading.",
+  },
+  {
+    word: "Astronomy",
+    hint: "The science that studies celestial bodies and cosmic phenomena.",
+  },
+  { word: "Chocolate", hint: "A sweet product made from cocoa and sugar." },
+  {
+    word: "Robot",
+    hint: "A machine capable of performing various tasks automatically.",
+  },
+  {
+    word: "Journey",
+    hint: "The act of moving from one place to another, typically for leisure or exploration.",
+  },
+];
+
 const body = document.querySelector("body");
 body.insertAdjacentHTML(
   "beforeend",
@@ -40,11 +74,7 @@ body.insertAdjacentHTML(
   </div>
   <div class="hangman-guess">
     <div class="hangman-guess__tabs">
-      <div class="tab"></div>
-      <div class="tab"></div>
-      <div class="tab"></div>
-      <div class="tab"></div>
-      <div class="tab"></div>
+      
     </div>
     <div class="hangman-guess__hint text">
       Hint: A popular Italian dish with dough, sauce, and toppings.
@@ -97,9 +127,25 @@ body.insertAdjacentHTML(
 </div>`
 );
 
+let randomInt = Math.floor(Math.random(0, 9) * 10);
+let hiddenWord = hangmanWords[randomInt].word;
+const tabsContainer = document.querySelector(".hangman-guess__tabs");
+for (let i = 0; i < hiddenWord.length; i++) {
+  tabsContainer.insertAdjacentHTML("beforeend", `<div class="tab"></div>`);
+}
+
+console.log(hiddenWord);
+
+{
+  /* <div class="tab"></div>
+      <div class="tab"></div>
+      <div class="tab"></div>
+      <div class="tab"></div>
+      <div class="tab"></div> */
+}
+
 const keywords = document.querySelectorAll(".keyboard__letter");
 
-console.log(keywords);
 for (let i = 0; i < keywords.length; i++) {
   keywords[i].addEventListener("click", function () {
     console.log(keywords[i].textContent);
