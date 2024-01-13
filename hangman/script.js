@@ -80,7 +80,7 @@ body.insertAdjacentHTML(
       Hint: A popular Italian dish with dough, sauce, and toppings.
     </div>
     <div class="hangman-guess__counter text">
-      Try: <span style="color: red">0 / 6</span>
+      Try: <span style="color: red" class="counter">0 / 6</span>
     </div>
     <div class="keyboard">
       <div class="keyboard__row">
@@ -127,6 +127,8 @@ body.insertAdjacentHTML(
 </div>`
 );
 
+let counterTry = 0;
+const tryForGuess = document.querySelector(".counter");
 let randomInt = Math.floor(Math.random(0, 9) * 10);
 let hiddenWord = hangmanWords[randomInt].word;
 const tabsContainer = document.querySelector(".hangman-guess__tabs");
@@ -147,6 +149,13 @@ for (let i = 0; i < keywords.length; i++) {
     let position = function (mainString, subString) {
       let indexes = [];
       let index = mainString.indexOf(subString);
+      console.log(index);
+
+      if (index === -1) {
+        counterTry += 1;
+        tryForGuess.textContent = `${counterTry} / 6`;
+        paintHangman(counterTry);
+      }
 
       while (index !== -1) {
         indexes.push(index);
@@ -165,3 +174,34 @@ for (let i = 0; i < keywords.length; i++) {
     console.log(keywords[i].textContent);
   });
 }
+
+function paintHangman(count) {
+  const hangamanHead = document.querySelector(".hangman-head");
+  const hangamanBody = document.querySelector(".hangman-body");
+  const hangmanArmLeft = document.querySelector(".hangman-arm-left");
+  const hangmanArmRight = document.querySelector(".hangman-arm-right");
+  const hangmanLegLeft = document.querySelector(".hangman-leg-left ");
+  const hangmanLegRight = document.querySelector(".hangman-leg-right");
+  switch (count) {
+    case 1:
+      hangamanHead.classList.remove("hidden");
+      break;
+    case 2:
+      hangamanBody.classList.remove("hidden");
+      break;
+    case 3:
+      hangmanArmLeft.classList.remove("hidden");
+      break;
+    case 4:
+      hangmanArmRight.classList.remove("hidden");
+      break;
+    case 5:
+      hangmanLegLeft.classList.remove("hidden");
+      break;
+    case 6:
+      hangmanLegRight.classList.remove("hidden");
+      break;
+  }
+}
+
+function showModal() {}
