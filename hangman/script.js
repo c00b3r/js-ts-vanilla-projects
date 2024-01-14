@@ -178,7 +178,6 @@ let lengthOfTabs = tabs.length;
 
 for (let i = 0; i < keywords.length; i++) {
   keywords[i].addEventListener("click", function () {
-    console.log(lengthOfTabs);
     let position = function (mainString, subString) {
       let indexes = [];
       let index = mainString.indexOf(subString);
