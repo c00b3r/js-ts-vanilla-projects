@@ -105,7 +105,6 @@
 }
 
 .modal-wrapper {
-  display: none;
   position: relative;
   position: fixed;
   left: 0;

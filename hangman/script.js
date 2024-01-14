@@ -32,6 +32,12 @@ const hangmanWords = [
   },
 ];
 
+const countOfError = function () {
+  counterTry += 1;
+  tryForGuess.textContent = `${counterTry} / 6`;
+  paintHangman(counterTry);
+};
+
 const body = document.querySelector("body");
 body.insertAdjacentHTML(
   "beforeend",
@@ -119,7 +125,7 @@ body.insertAdjacentHTML(
   </div>
 </div>
 
-<div class="modal-wrapper">
+<div class="modal-wrapper hidden">
   <div class="modal">
     <h1 class="modal-header text">Your win!</h1>
     <div class="modal__button-again">Play Again</div>
@@ -127,7 +133,10 @@ body.insertAdjacentHTML(
 </div>`
 );
 
+const modal = document.querySelector(".modal-wrapper");
+const modalHeader = document.querySelector(".modal-header");
 let counterTry = 0;
+let gameResult = "";
 const tryForGuess = document.querySelector(".counter");
 let randomInt = Math.floor(Math.random(0, 9) * 10);
 let hiddenWord = hangmanWords[randomInt].word;
@@ -138,23 +147,21 @@ for (let i = 0; i < hiddenWord.length; i++) {
 const hint = document.querySelector(".hangman-guess__hint");
 hint.textContent = `Hint: ${hangmanWords[randomInt].hint}`;
 const tabs = document.querySelectorAll(".tab");
-console.log(tabs.length);
 
 console.log(hiddenWord);
 
 const keywords = document.querySelectorAll(".keyboard__letter");
+let lengthOfTabs = tabs.length;
 
 for (let i = 0; i < keywords.length; i++) {
   keywords[i].addEventListener("click", function () {
+    console.log(lengthOfTabs);
     let position = function (mainString, subString) {
       let indexes = [];
       let index = mainString.indexOf(subString);
-      console.log(index);
 
       if (index === -1) {
-        counterTry += 1;
-        tryForGuess.textContent = `${counterTry} / 6`;
-        paintHangman(counterTry);
+        countOfError();
       }
 
       while (index !== -1) {
@@ -164,14 +171,22 @@ for (let i = 0; i < keywords.length; i++) {
 
       return indexes;
     };
+
     let indexOfWord = position(hiddenWord, keywords[i].textContent);
     indexOfWord.map((element) => {
-      tabs[element].textContent = keywords[i].textContent;
-      tabs[element].classList.remove("tab");
-      tabs[element].classList.add("tabs__word");
+      if (tabs[element].textContent === keywords[i].textContent) {
+        countOfError();
+      } else {
+        tabs[element].textContent = keywords[i].textContent;
+        tabs[element].classList.remove("tab");
+        tabs[element].classList.add("tabs__word");
+        lengthOfTabs = lengthOfTabs - 1;
+      }
     });
-    console.log(indexOfWord);
-    console.log(keywords[i].textContent);
+    if (lengthOfTabs === 0) {
+      gameResult = "win";
+      showModal(gameResult);
+    }
   });
 }
 
@@ -200,8 +215,18 @@ function paintHangman(count) {
       break;
     case 6:
       hangmanLegRight.classList.remove("hidden");
+      gameResult = "lose";
+      showModal(gameResult);
       break;
   }
 }
 
-function showModal() {}
+function showModal(situation) {
+  if (situation === "lose") {
+    modal.classList.remove("hidden");
+    modalHeader.textContent = "You lose!";
+  } else if (situation === "win") {
+    modal.classList.remove("hidden");
+    modalHeader.textContent = "You win!";
+  }
+}
