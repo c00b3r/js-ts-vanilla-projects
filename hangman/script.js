@@ -155,7 +155,6 @@ const startGame = () => {
 
 const hangmanGameProccess = document.querySelector(".hangman__game-proccess");
 const listOfHanfman = hangmanGameProccess.children;
-console.log(listOfHanfman);
 
 const modal = document.querySelector(".modal-wrapper");
 const modalHeader = document.querySelector(".modal-header");
