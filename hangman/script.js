@@ -136,6 +136,9 @@ body.insertAdjacentHTML(
 const modalButton = document.querySelector(".modal__button-again");
 let newRandomInt = 0;
 const startGame = () => {
+  for (i = 0; i < keywords.length; i++) {
+    keywords[i].classList.remove("used");
+  }
   console.log(hangmanWords);
   modal.classList.add("hidden");
   counterTry = 0;
@@ -190,8 +193,8 @@ for (let i = 0; i < keywords.length; i++) {
     let position = function (mainString, subString) {
       let indexes = [];
       let index = mainString.indexOf(subString);
-
-      if (index === -1) {
+      console.log(keywords[i].classList.contains("used"));
+      if (index === -1 && !keywords[i].classList.contains("used")) {
         countOfError();
       }
 
@@ -206,7 +209,7 @@ for (let i = 0; i < keywords.length; i++) {
     let indexOfWord = position(hiddenWord, keywords[i].textContent);
     indexOfWord.map((element) => {
       if (tabs[element].textContent === keywords[i].textContent) {
-        countOfError();
+        return;
       } else {
         tabs[element].textContent = keywords[i].textContent;
         tabs[element].classList.remove("tab");
@@ -218,6 +221,7 @@ for (let i = 0; i < keywords.length; i++) {
       gameResult = "win";
       showModal(gameResult);
     }
+    keywords[i].classList.add("used");
   });
 }
 
