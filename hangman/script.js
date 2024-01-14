@@ -133,6 +133,30 @@ body.insertAdjacentHTML(
 </div>`
 );
 
+const startGame = () => {
+  modal.classList.add("hidden");
+  counterTry = 0;
+  tryForGuess.textContent = `${counterTry} / 6`;
+  gameResult = "";
+  randomInt = Math.floor(Math.random(0, 9) * 10);
+  hiddenWord = hangmanWords[randomInt].word;
+  tabsContainer.innerHTML = "";
+  for (let i = 0; i < hiddenWord.length; i++) {
+    tabsContainer.insertAdjacentHTML("beforeend", `<div class="tab"></div>`);
+  }
+  hint.textContent = `Hint: ${hangmanWords[randomInt].hint}`;
+  tabs = document.querySelectorAll(".tab");
+  lengthOfTabs = tabs.length;
+  console.log(hiddenWord);
+  for (i = 1; i < listOfHanfman.length; i++) {
+    listOfHanfman[i].classList.add("hidden");
+  }
+};
+
+const hangmanGameProccess = document.querySelector(".hangman__game-proccess");
+const listOfHanfman = hangmanGameProccess.children;
+console.log(listOfHanfman);
+
 const modal = document.querySelector(".modal-wrapper");
 const modalHeader = document.querySelector(".modal-header");
 let counterTry = 0;
@@ -146,7 +170,7 @@ for (let i = 0; i < hiddenWord.length; i++) {
 }
 const hint = document.querySelector(".hangman-guess__hint");
 hint.textContent = `Hint: ${hangmanWords[randomInt].hint}`;
-const tabs = document.querySelectorAll(".tab");
+let tabs = document.querySelectorAll(".tab");
 
 console.log(hiddenWord);
 
@@ -230,3 +254,6 @@ function showModal(situation) {
     modalHeader.textContent = "You win!";
   }
 }
+
+const modalButton = document.querySelector(".modal__button-again");
+modalButton.addEventListener("click", startGame);
