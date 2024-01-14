@@ -133,18 +133,27 @@ body.insertAdjacentHTML(
 </div>`
 );
 
+const modalButton = document.querySelector(".modal__button-again");
+let newRandomInt = 0;
 const startGame = () => {
+  console.log(hangmanWords);
   modal.classList.add("hidden");
   counterTry = 0;
   tryForGuess.textContent = `${counterTry} / 6`;
   gameResult = "";
-  randomInt = Math.floor(Math.random(0, 9) * 10);
-  hiddenWord = hangmanWords[randomInt].word;
+  let aboba = hangmanWords.length;
+  if (aboba === 0) {
+    showModal("tie");
+  } else {
+    newRandomInt = Math.floor(Math.random() * aboba);
+  }
+  console.log(newRandomInt);
+  hiddenWord = hangmanWords[newRandomInt].word;
   tabsContainer.innerHTML = "";
   for (let i = 0; i < hiddenWord.length; i++) {
     tabsContainer.insertAdjacentHTML("beforeend", `<div class="tab"></div>`);
   }
-  hint.textContent = `Hint: ${hangmanWords[randomInt].hint}`;
+  hint.textContent = `Hint: ${hangmanWords[newRandomInt].hint}`;
   tabs = document.querySelectorAll(".tab");
   lengthOfTabs = tabs.length;
   console.log(hiddenWord);
@@ -161,7 +170,7 @@ const modalHeader = document.querySelector(".modal-header");
 let counterTry = 0;
 let gameResult = "";
 const tryForGuess = document.querySelector(".counter");
-let randomInt = Math.floor(Math.random(0, 9) * 10);
+let randomInt = Math.floor(Math.random() * 11);
 let hiddenWord = hangmanWords[randomInt].word;
 const tabsContainer = document.querySelector(".hangman-guess__tabs");
 for (let i = 0; i < hiddenWord.length; i++) {
@@ -248,10 +257,17 @@ function showModal(situation) {
     modal.classList.remove("hidden");
     modalHeader.textContent = "You lose!";
   } else if (situation === "win") {
+    hangmanWords.forEach((element, index) => {
+      if (element.word === hiddenWord) {
+        hangmanWords.splice(index, 1);
+      }
+    });
     modal.classList.remove("hidden");
     modalHeader.textContent = "You win!";
+  } else if ("tie") {
+    modal.classList.remove("hidden");
+    modalHeader.textContent = "You guessed all the words!";
+    modalButton.classList.add("hidden");
   }
 }
-
-const modalButton = document.querySelector(".modal__button-again");
 modalButton.addEventListener("click", startGame);
