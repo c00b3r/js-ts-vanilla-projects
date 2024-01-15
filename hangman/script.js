@@ -172,7 +172,7 @@ const modalHeader = document.querySelector(".modal-header");
 let counterTry = 0;
 let gameResult = "";
 const tryForGuess = document.querySelector(".counter");
-let randomInt = Math.floor(Math.random() * 11);
+let randomInt = Math.floor(Math.random() * 10);
 let hiddenWord = hangmanWords[randomInt].word;
 const tabsContainer = document.querySelector(".hangman-guess__tabs");
 for (let i = 0; i < hiddenWord.length; i++) {
@@ -272,6 +272,7 @@ function showModal(situation) {
   } else if ("tie") {
     modal.classList.remove("hidden");
     modalHeader.textContent = "You guessed all the words!";
+    guessWord.textContent = "";
     modalButton.classList.add("hidden");
   }
 }

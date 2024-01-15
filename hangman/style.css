@@ -165,19 +165,84 @@
   display: none;
 }
 
+.tabs__word {
+  font-size: 40px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+
 @media (max-width: 540px) {
+  .hangman-head {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 60px;
+    left: 187px;
+  }
+
+  .hangman-body {
+    height: 65px;
+    position: absolute;
+    top: 110px;
+    left: 210px;
+  }
+
+  .hangman-arm-left {
+    width: 34px;
+    height: 40px;
+    position: absolute;
+    top: 110px;
+    left: 178px;
+  }
+
+  .hangman-arm-right {
+    width: 34px;
+    height: 40px;
+    position: absolute;
+    top: 110px;
+    left: 210px;
+  }
+
+  .hangman-leg-left {
+    width: 34px;
+    height: 40px;
+    position: absolute;
+    top: 172px;
+    left: 178px;
+  }
+
+  .hangman-leg-right {
+    width: 34px;
+    height: 40px;
+    position: absolute;
+    top: 172px;
+    left: 210px;
+  }
+
   .container {
     flex-direction: column;
     padding: 20px;
   }
 
   .gallows {
-    width: 300px;
-    height: 300px;
+    width: 150px;
+    height: 150px;
+  }
+
+  .tab {
+    width: 25px;
+  }
+
+  .tabs__word {
+    font-size: 25px;
   }
 
   .hangman-guess {
     padding: 10px 5px;
+  }
+
+  .text {
+    font-size: 16px;
   }
 
   .keyboard {
@@ -195,6 +260,7 @@
     border-radius: 5px;
     color: white;
     font-weight: bold;
+    font-size: 16px;
   }
 
   .hangman__game-proccess {
@@ -203,6 +269,42 @@
 }
 
 @media (min-width: 540px) and (max-width: 960px) {
+  .hangman-head {
+    position: absolute;
+    top: 120px;
+    left: 435px;
+  }
+
+  .hangman-body {
+    position: absolute;
+    top: 220px;
+    left: 482px;
+  }
+
+  .hangman-arm-left {
+    position: absolute;
+    top: 217px;
+    left: 420px;
+  }
+
+  .hangman-arm-right {
+    position: absolute;
+    top: 217px;
+    left: 482px;
+  }
+
+  .hangman-leg-left {
+    position: absolute;
+    top: 345px;
+    left: 420px;
+  }
+
+  .hangman-leg-right {
+    position: absolute;
+    top: 345px;
+    left: 482px;
+  }
+
   .container {
     flex-direction: column;
     padding: 20px;
@@ -216,10 +318,4 @@
     width: 350px;
     height: 350px;
   }
-}
-
-.tabs__word {
-  font-size: 40px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold;
 }
