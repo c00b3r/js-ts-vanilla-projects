@@ -289,12 +289,20 @@ document.addEventListener("keydown", function (event) {
     return;
   }
   let keyInput = event.key.toUpperCase();
+
   if (/^[A-Z]$/.test(keyInput)) {
     let position = function (mainString, subString) {
       let indexes = [];
       let index = mainString.indexOf(subString);
       if (index === -1) {
-        countOfError();
+        keywords.forEach((element) => {
+          if (
+            keyInput === element.textContent &&
+            !element.classList.contains("used")
+          ) {
+            countOfError();
+          }
+        });
       }
 
       while (index !== -1) {
