@@ -33,6 +33,9 @@ const hangmanWords = [
 ];
 
 const countOfError = function () {
+  if (counterTry === 6) {
+    return;
+  }
   counterTry += 1;
   tryForGuess.textContent = `${counterTry} / 6`;
   paintHangman(counterTry);
@@ -190,6 +193,9 @@ let lengthOfTabs = tabs.length;
 for (let i = 0; i < keywords.length; i++) {
   keywords[i].addEventListener("click", function () {
     let position = function (mainString, subString) {
+      if (!modal.classList.contains("hidden")) {
+        return;
+      }
       let indexes = [];
       let index = mainString.indexOf(subString);
       if (index === -1 && !keywords[i].classList.contains("used")) {
@@ -279,6 +285,9 @@ function showModal(situation) {
 modalButton.addEventListener("click", startGame);
 
 document.addEventListener("keydown", function (event) {
+  if (!modal.classList.contains("hidden")) {
+    return;
+  }
   let keyInput = event.key.toUpperCase();
   if (/^[A-Z]$/.test(keyInput)) {
     let position = function (mainString, subString) {
