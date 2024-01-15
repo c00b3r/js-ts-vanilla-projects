@@ -312,4 +312,9 @@ document.addEventListener("keydown", function (event) {
       showModal(gameResult);
     }
   }
+  keywords.forEach((element) => {
+    if (element.textContent === keyInput) {
+      element.classList.add("used");
+    }
+  });
 });
