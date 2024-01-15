@@ -277,3 +277,39 @@ function showModal(situation) {
   }
 }
 modalButton.addEventListener("click", startGame);
+
+document.addEventListener("keydown", function (event) {
+  let keyInput = event.key.toUpperCase();
+  if (/^[A-Z]$/.test(keyInput)) {
+    let position = function (mainString, subString) {
+      let indexes = [];
+      let index = mainString.indexOf(subString);
+      if (index === -1) {
+        countOfError();
+      }
+
+      while (index !== -1) {
+        indexes.push(index);
+        index = mainString.indexOf(subString, index + 1);
+      }
+
+      return indexes;
+    };
+
+    let indexOfWord = position(hiddenWord, keyInput);
+    indexOfWord.map((element) => {
+      if (tabs[element].textContent === keyInput) {
+        return;
+      } else {
+        tabs[element].textContent = keyInput;
+        tabs[element].classList.remove("tab");
+        tabs[element].classList.add("tabs__word");
+        lengthOfTabs = lengthOfTabs - 1;
+      }
+    });
+    if (lengthOfTabs === 0) {
+      gameResult = "win";
+      showModal(gameResult);
+    }
+  }
+});
