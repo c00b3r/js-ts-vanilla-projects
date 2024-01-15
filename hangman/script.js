@@ -128,6 +128,7 @@ body.insertAdjacentHTML(
 <div class="modal-wrapper hidden">
   <div class="modal">
     <h1 class="modal-header text">Your win!</h1>
+    <div class="hidden-word"></div>
     <div class="modal__button-again">Play Again</div>
   </div>
 </div>`
@@ -139,7 +140,6 @@ const startGame = () => {
   for (i = 0; i < keywords.length; i++) {
     keywords[i].classList.remove("used");
   }
-  console.log(hangmanWords);
   modal.classList.add("hidden");
   counterTry = 0;
   tryForGuess.textContent = `${counterTry} / 6`;
@@ -150,7 +150,6 @@ const startGame = () => {
   } else {
     newRandomInt = Math.floor(Math.random() * aboba);
   }
-  console.log(newRandomInt);
   hiddenWord = hangmanWords[newRandomInt].word;
   tabsContainer.innerHTML = "";
   for (let i = 0; i < hiddenWord.length; i++) {
@@ -193,7 +192,6 @@ for (let i = 0; i < keywords.length; i++) {
     let position = function (mainString, subString) {
       let indexes = [];
       let index = mainString.indexOf(subString);
-      console.log(keywords[i].classList.contains("used"));
       if (index === -1 && !keywords[i].classList.contains("used")) {
         countOfError();
       }
@@ -257,8 +255,10 @@ function paintHangman(count) {
 }
 
 function showModal(situation) {
+  const guessWord = document.querySelector(".hidden-word");
   if (situation === "lose") {
     modal.classList.remove("hidden");
+    guessWord.textContent = hiddenWord;
     modalHeader.textContent = "You lose!";
   } else if (situation === "win") {
     hangmanWords.forEach((element, index) => {
@@ -267,6 +267,7 @@ function showModal(situation) {
       }
     });
     modal.classList.remove("hidden");
+    guessWord.textContent = hiddenWord;
     modalHeader.textContent = "You win!";
   } else if ("tie") {
     modal.classList.remove("hidden");
