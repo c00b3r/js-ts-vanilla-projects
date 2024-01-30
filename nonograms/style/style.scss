@@ -6,6 +6,11 @@ body{
   background-color: #dce1e6;
 }
 
+#nonogramCanvas {
+  cursor: pointer;
+  text-align: center;
+}
+
 .container {
   display: flex;
   flex-direction: column;
