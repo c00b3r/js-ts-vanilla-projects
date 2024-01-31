@@ -3,8 +3,8 @@ const nonograms = {
   Бумеранг: [
     [1, 0, 0, 0, 0],
     [1, 1, 0, 0, 0],
-    [1, 1, 0, 0, 0],
     [1, 1, 1, 0, 0],
+    [1, 1, 1, 1, 0],
     [0, 1, 1, 1, 1],
   ],
   Верблюд: [
@@ -157,6 +157,13 @@ function drawHint(arrayOfHint, canvasCtx) {
 function drawCell(canvas, nameOfCell) {
   const ctxWhenCell = canvas.getContext("2d");
   const cellState = {};
+  let arrayCells = [
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+  ];
 
   canvas.addEventListener("click", function (event) {
     const x = event.clientX - canvas.getBoundingClientRect().left;
@@ -177,6 +184,28 @@ function drawCell(canvas, nameOfCell) {
 
       cellState[`${rowIndex}-${colIndex}`] =
         currentColor === "#dce1e6" ? "black" : "#dce1e6";
+
+      arrayCells[rowIndex][colIndex] = currentColor === "black" ? 0 : 1;
+
+      if (areArraysEqual(arrayCells, nonograms[nameOfCell])) {
+        console.log("you win");
+      } else console.log("you almost win", arrayCells);
     }
   });
+}
+
+function areArraysEqual(arr1, arr2) {
+  if (arr1.length !== arr2.length) {
+    return false;
+  }
+
+  for (let i = 0; i < arr1.length; i++) {
+    for (let j = 0; j < arr1[i].length; j++) {
+      if (arr1[i][j] !== arr2[i][j]) {
+        return false;
+      }
+    }
+  }
+
+  return true;
 }
