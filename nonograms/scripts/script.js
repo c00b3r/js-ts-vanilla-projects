@@ -36,6 +36,7 @@ const nonograms = {
     [1, 0, 1, 1, 1],
   ],
 };
+let canvas;
 
 body.insertAdjacentHTML(
   "beforeend",
@@ -59,6 +60,7 @@ buttons.forEach((element) => {
     paintCanvas.setAttribute("id", "nonogramCanvas");
     paintCanvas.setAttribute("width", "500px");
     paintCanvas.setAttribute("height", "500px");
+    drawCell(paintCanvas, element.textContent);
     container.appendChild(paintCanvas);
     drawNonogram(element.textContent, paintCanvas);
   });
@@ -105,7 +107,7 @@ function drawHint(arrayOfHint, canvasCtx) {
   });
 
   const transposedArray = Array.from(
-    { length: arrayOfHint[0].length },
+    { length: arrayOfHint.length },
     (_, colIndex) => arrayOfHint.map((row) => row[colIndex])
   );
 
@@ -132,7 +134,7 @@ function drawHint(arrayOfHint, canvasCtx) {
   console.log(countsPerColumns);
 
   for (let i = 0; i < 5; i++) {
-    const hui = countsPerRow[i].join("\n");
+    const hui = countsPerColumns[i].join("\n");
     const lines = hui.split("\n");
 
     lines.forEach((line, index) => {
@@ -151,4 +153,30 @@ function drawHint(arrayOfHint, canvasCtx) {
     canvasCtx.strokeRect(30, i * 50 + 100, 70, 50);
   }
 }
-const canvas = document.querySelector("canvas");
+
+function drawCell(canvas, nameOfCell) {
+  const ctxWhenCell = canvas.getContext("2d");
+  const cellState = {};
+
+  canvas.addEventListener("click", function (event) {
+    const x = event.clientX - canvas.getBoundingClientRect().left;
+    const y = event.clientY - canvas.getBoundingClientRect().top;
+
+    const rowIndex = Math.floor((y - 100) / 50);
+    const colIndex = Math.floor((x - 100) / 50);
+    console.log(rowIndex, colIndex);
+
+    if (rowIndex >= 0 && rowIndex < 5 && colIndex >= 0 && colIndex < 5) {
+      if (!cellState[`${rowIndex}-${colIndex}`]) {
+        cellState[`${rowIndex}-${colIndex}`] = "#dce1e6";
+      }
+
+      const currentColor = cellState[`${rowIndex}-${colIndex}`];
+      ctxWhenCell.fillStyle = currentColor === "#dce1e6" ? "black" : "#dce1e6";
+      ctxWhenCell.fillRect(colIndex * 50 + 102, rowIndex * 50 + 102, 46, 46);
+
+      cellState[`${rowIndex}-${colIndex}`] =
+        currentColor === "#dce1e6" ? "black" : "#dce1e6";
+    }
+  });
+}
