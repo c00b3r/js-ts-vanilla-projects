@@ -9,7 +9,6 @@ body {
 #nonogramCanvas {
   cursor: pointer;
   text-align: center;
-  font-size: 30px;
 }
 
 .container {
@@ -40,6 +39,11 @@ body {
 .container .container__button:hover {
   background-color: black;
   color: white;
+}
+
+.winner {
+  color: green;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 /*# sourceMappingURL=index.css.map */

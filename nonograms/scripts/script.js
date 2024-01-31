@@ -188,7 +188,7 @@ function drawCell(canvas, nameOfCell) {
       arrayCells[rowIndex][colIndex] = currentColor === "black" ? 0 : 1;
 
       if (areArraysEqual(arrayCells, nonograms[nameOfCell])) {
-        console.log("you win");
+        messageOfWin(nameOfCell);
       } else console.log("you almost win", arrayCells);
     }
   });
@@ -208,4 +208,11 @@ function areArraysEqual(arr1, arr2) {
   }
 
   return true;
+}
+
+function messageOfWin(nameOfNonogram) {
+  const winMessage = document.createElement("div");
+  winMessage.classList.add("winner");
+  winMessage.textContent = `Поздравляю вы отгадали нонограмму "${nameOfNonogram}"`;
+  container.insertAdjacentElement("afterbegin", winMessage);
 }
