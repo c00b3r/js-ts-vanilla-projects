@@ -131,8 +131,6 @@ function drawHint(arrayOfHint, canvasCtx) {
     return counts;
   });
 
-  console.log(countsPerColumns);
-
   for (let i = 0; i < 5; i++) {
     const hui = countsPerColumns[i].join("\n");
     const lines = hui.split("\n");
@@ -141,9 +139,6 @@ function drawHint(arrayOfHint, canvasCtx) {
       canvasCtx.fillText(line, i * 50 + 120, 50 + index * 20);
       canvasCtx.strokeRect(i * 50 + 100, 30, 50, 70);
     });
-    // canvasCtx.strokeRect(i * 50 + 120, 70 + index * 20, 70, 50);
-    // canvasCtx.fillText(hui, i * 50 + 130, 80);
-    // canvasCtx.strokeRect(30, i * 50 + 100, 70, 50);
   }
 
   for (let i = 0; i < 5; i++) {
@@ -171,7 +166,6 @@ function drawCell(canvas, nameOfCell) {
 
     const rowIndex = Math.floor((y - 100) / 50);
     const colIndex = Math.floor((x - 100) / 50);
-    console.log(rowIndex, colIndex);
 
     if (rowIndex >= 0 && rowIndex < 5 && colIndex >= 0 && colIndex < 5) {
       if (!cellState[`${rowIndex}-${colIndex}`]) {
@@ -189,7 +183,7 @@ function drawCell(canvas, nameOfCell) {
 
       if (areArraysEqual(arrayCells, nonograms[nameOfCell])) {
         messageOfWin(nameOfCell);
-      } else console.log("you almost win", arrayCells);
+      }
     }
   });
 }
