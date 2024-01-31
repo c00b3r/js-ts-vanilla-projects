@@ -104,6 +104,51 @@ function drawHint(arrayOfHint, canvasCtx) {
     return counts;
   });
 
-  console.log(countsPerRow);
+  const transposedArray = Array.from(
+    { length: arrayOfHint[0].length },
+    (_, colIndex) => arrayOfHint.map((row) => row[colIndex])
+  );
+
+  const countsPerColumns = transposedArray.map((column) => {
+    let count = 0;
+    const counts = [];
+
+    for (let i = 0; i < column.length; i++) {
+      if (column[i] === 1) {
+        count++;
+      } else if (count > 0) {
+        counts.push(count);
+        count = 0;
+      }
+    }
+
+    if (count > 0) {
+      counts.push(count);
+    }
+
+    return counts;
+  });
+
+  console.log(countsPerColumns);
+
+  for (let i = 0; i < 5; i++) {
+    const hui = countsPerRow[i].join("\n");
+    const lines = hui.split("\n");
+
+    lines.forEach((line, index) => {
+      canvasCtx.fillText(line, i * 50 + 120, 50 + index * 20);
+      canvasCtx.strokeRect(i * 50 + 100, 30, 50, 70);
+    });
+    // canvasCtx.strokeRect(i * 50 + 120, 70 + index * 20, 70, 50);
+    // canvasCtx.fillText(hui, i * 50 + 130, 80);
+    // canvasCtx.strokeRect(30, i * 50 + 100, 70, 50);
+  }
+
+  for (let i = 0; i < 5; i++) {
+    const hui = countsPerRow[i].join("  ");
+
+    canvasCtx.fillText(hui, 40, i * 50 + 130);
+    canvasCtx.strokeRect(30, i * 50 + 100, 70, 50);
+  }
 }
 const canvas = document.querySelector("canvas");
