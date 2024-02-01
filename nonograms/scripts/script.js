@@ -186,6 +186,32 @@ function drawCell(canvas, nameOfCell) {
       }
     }
   });
+
+  canvas.addEventListener("contextmenu", (event) => {
+    event.preventDefault();
+    const x = event.clientX - canvas.getBoundingClientRect().left;
+    const y = event.clientY - canvas.getBoundingClientRect().top;
+
+    const rowIndex = Math.floor((y - 100) / 50);
+    const colIndex = Math.floor((x - 100) / 50);
+
+    if (rowIndex >= 0 && rowIndex < 5 && colIndex >= 0 && colIndex < 5) {
+      const currentColor = cellState[`${rowIndex}-${colIndex}`];
+
+      if (currentColor === "black") {
+        return;
+      }
+      ctxWhenCell.strokeStyle = "red";
+      ctxWhenCell.lineWidth = 3;
+
+      ctxWhenCell.beginPath();
+      ctxWhenCell.moveTo(colIndex * 50 + 106, rowIndex * 50 + 106);
+      ctxWhenCell.lineTo(colIndex * 50 + 142, rowIndex * 50 + 142);
+      ctxWhenCell.moveTo(colIndex * 50 + 142, rowIndex * 50 + 106);
+      ctxWhenCell.lineTo(colIndex * 50 + 106, rowIndex * 50 + 142);
+      ctxWhenCell.stroke();
+    }
+  });
 }
 
 function areArraysEqual(arr1, arr2) {
@@ -205,8 +231,13 @@ function areArraysEqual(arr1, arr2) {
 }
 
 function messageOfWin(nameOfNonogram) {
-  const winMessage = document.createElement("div");
-  winMessage.classList.add("winner");
-  winMessage.textContent = `Поздравляю вы отгадали нонограмму "${nameOfNonogram}"`;
-  container.insertAdjacentElement("afterbegin", winMessage);
+  const containElements = document.querySelector(".winner");
+  if (containElements !== null) {
+    return;
+  } else {
+    const winMessage = document.createElement("div");
+    winMessage.classList.add("winner");
+    winMessage.textContent = `Поздравляю вы отгадали нонограмму "${nameOfNonogram}"`;
+    container.insertAdjacentElement("afterbegin", winMessage);
+  }
 }
