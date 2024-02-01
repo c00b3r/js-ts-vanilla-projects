@@ -194,22 +194,28 @@ function drawCell(canvas, nameOfCell) {
 
     const rowIndex = Math.floor((y - 100) / 50);
     const colIndex = Math.floor((x - 100) / 50);
+    const cellKey = `${rowIndex}-${colIndex}`;
 
     if (rowIndex >= 0 && rowIndex < 5 && colIndex >= 0 && colIndex < 5) {
-      const currentColor = cellState[`${rowIndex}-${colIndex}`];
+      const currentColor = cellState[cellKey];
 
       if (currentColor === "black") {
-        return;
+        // Если у ячейки уже стоит крестик, то убираем его (ставим белый цвет)
+        ctxWhenCell.fillStyle = "#dce1e6";
+        ctxWhenCell.fillRect(colIndex * 50 + 102, rowIndex * 50 + 102, 46, 46);
+        cellState[cellKey] = "#dce1e6";
+      } else {
+        // Если крестика нет, то ставим (ставим красный цвет)
+        ctxWhenCell.strokeStyle = "red";
+        ctxWhenCell.lineWidth = 3;
+        ctxWhenCell.beginPath();
+        ctxWhenCell.moveTo(colIndex * 50 + 106, rowIndex * 50 + 106);
+        ctxWhenCell.lineTo(colIndex * 50 + 142, rowIndex * 50 + 142);
+        ctxWhenCell.moveTo(colIndex * 50 + 142, rowIndex * 50 + 106);
+        ctxWhenCell.lineTo(colIndex * 50 + 106, rowIndex * 50 + 142);
+        ctxWhenCell.stroke();
+        cellState[cellKey] = "black";
       }
-      ctxWhenCell.strokeStyle = "red";
-      ctxWhenCell.lineWidth = 3;
-
-      ctxWhenCell.beginPath();
-      ctxWhenCell.moveTo(colIndex * 50 + 106, rowIndex * 50 + 106);
-      ctxWhenCell.lineTo(colIndex * 50 + 142, rowIndex * 50 + 142);
-      ctxWhenCell.moveTo(colIndex * 50 + 142, rowIndex * 50 + 106);
-      ctxWhenCell.lineTo(colIndex * 50 + 106, rowIndex * 50 + 142);
-      ctxWhenCell.stroke();
     }
   });
 }
