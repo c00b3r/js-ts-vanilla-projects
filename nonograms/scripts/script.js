@@ -63,8 +63,35 @@ buttons.forEach((element) => {
     drawCell(paintCanvas, element.textContent);
     container.appendChild(paintCanvas);
     drawNonogram(element.textContent, paintCanvas);
+
+    const buttonReload = document.createElement("div");
+    buttonReload.classList.add("button-reload");
+    buttonReload.textContent = "Заново";
+    container.insertAdjacentElement("afterbegin", buttonReload);
+
+    buttonReload.addEventListener("click", function () {
+      resetGame(element.textContent);
+    });
   });
 });
+
+function resetGame(nameOfResetNonogram) {
+  console.log(nameOfResetNonogram);
+  const currentCanvas = document.querySelector("canvas");
+  const winnerMessage = document.querySelector(".winner");
+  if (winnerMessage != null) {
+    winnerMessage.remove();
+  }
+
+  currentCanvas.remove();
+  const newCanvas = document.createElement("canvas");
+  newCanvas.setAttribute("id", "nonogramCanvas");
+  newCanvas.setAttribute("width", "500px");
+  newCanvas.setAttribute("height", "500px");
+  drawCell(newCanvas, nameOfResetNonogram);
+  container.appendChild(newCanvas);
+  drawNonogram(nameOfResetNonogram, newCanvas);
+}
 
 function drawNonogram(nameOfNonogram, canvas) {
   const ctx = canvas.getContext("2d");
@@ -200,12 +227,10 @@ function drawCell(canvas, nameOfCell) {
       const currentColor = cellState[cellKey];
 
       if (currentColor === "black") {
-        // Если у ячейки уже стоит крестик, то убираем его (ставим белый цвет)
         ctxWhenCell.fillStyle = "#dce1e6";
         ctxWhenCell.fillRect(colIndex * 50 + 102, rowIndex * 50 + 102, 46, 46);
         cellState[cellKey] = "#dce1e6";
       } else {
-        // Если крестика нет, то ставим (ставим красный цвет)
         ctxWhenCell.strokeStyle = "red";
         ctxWhenCell.lineWidth = 3;
         ctxWhenCell.beginPath();

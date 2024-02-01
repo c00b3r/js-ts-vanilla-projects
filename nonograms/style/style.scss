@@ -51,10 +51,34 @@ body{
       padding: 10px 30px;
     }
   }
+  
 }
 
 .winner{
   color: green;
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.button-reload{
+  align-self: flex-end;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 20px 60px;
+  border-radius: 20px;
+  border: solid black 1px;
+  margin-bottom: 10px;
+  cursor: pointer;
+
+  &:hover{
+    background-color: black;
+    color: white;
+  }
+
+  @media (max-width: 760px) {
+    font-size: 24px;
+    padding: 10px 30px;
+  }
+}
+
 
