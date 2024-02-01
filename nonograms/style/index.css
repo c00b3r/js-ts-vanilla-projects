@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  margin: 0;
 }
 
 body {
@@ -9,6 +10,8 @@ body {
 #nonogramCanvas {
   cursor: pointer;
   text-align: center;
+  width: 500px;
+  height: 500px;
 }
 
 .container {
@@ -76,6 +79,7 @@ body {
   .button-reload {
     font-size: 24px;
     padding: 10px 30px;
+    align-self: center;
   }
 }
 
