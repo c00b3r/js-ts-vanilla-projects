@@ -56,16 +56,22 @@ body {
 }
 
 .winner {
+  align-self: center;
   color: green;
   font-family: Arial, Helvetica, sans-serif;
+}
+@media (max-width: 760px) {
+  .winner {
+    width: 350px;
+  }
 }
 
 .button-reload {
   align-self: flex-end;
-  font-size: 30px;
+  font-size: 24px;
   font-weight: bold;
   font-family: Arial, Helvetica, sans-serif;
-  padding: 20px 60px;
+  padding: 10px 30px;
   border-radius: 20px;
   border: solid black 1px;
   margin-bottom: 10px;
@@ -77,6 +83,29 @@ body {
 }
 @media (max-width: 760px) {
   .button-reload {
+    font-size: 24px;
+    padding: 10px 30px;
+    align-self: center;
+  }
+}
+
+.button-back {
+  align-self: first baseline;
+  font-size: 24px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 10px 30px;
+  border-radius: 20px;
+  border: solid black 1px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.button-back:hover {
+  background-color: black;
+  color: white;
+}
+@media (max-width: 760px) {
+  .button-back {
     font-size: 24px;
     padding: 10px 30px;
     align-self: center;

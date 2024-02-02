@@ -37,45 +37,59 @@ const nonograms = {
   ],
 };
 
-body.insertAdjacentHTML(
-  "beforeend",
-  `<div class="container">
-<h1 class="header">Выберите нонограму для решения</h1>
-<div class="container__button">Бумеранг</div>
-<div class="container__button">Верблюд</div>
-<div class="container__button">Кошка</div>
-<div class="container__button">Трубка</div>
-<div class="container__button">Тетрис</div>
-</div>`
-);
+function initMainMenu() {
+  body.innerHTML = "";
+  body.insertAdjacentHTML(
+    "beforeend",
+    `<div class="container">
+  <h1 class="header">Выберите нонограму для решения</h1>
+  <div class="container__button">Бумеранг</div>
+  <div class="container__button">Верблюд</div>
+  <div class="container__button">Кошка</div>
+  <div class="container__button">Трубка</div>
+  <div class="container__button">Тетрис</div>
+  </div>`
+  );
 
-const container = document.querySelector(".container");
-const buttons = document.querySelectorAll(".container__button");
+  const container = document.querySelector(".container");
+  const buttons = document.querySelectorAll(".container__button");
 
-buttons.forEach((element) => {
-  element.addEventListener("click", function handleClick() {
-    container.innerHTML = "";
-    const paintCanvas = document.createElement("canvas");
-    paintCanvas.setAttribute("id", "nonogramCanvas");
-    paintCanvas.setAttribute("width", "500px");
-    paintCanvas.setAttribute("height", "500px");
-    drawCell(paintCanvas, element.textContent);
-    container.appendChild(paintCanvas);
-    drawNonogram(element.textContent, paintCanvas);
+  buttons.forEach((element) => {
+    element.addEventListener("click", function handleClick() {
+      container.innerHTML = "";
+      const paintCanvas = document.createElement("canvas");
+      paintCanvas.setAttribute("id", "nonogramCanvas");
+      paintCanvas.setAttribute("width", "500px");
+      paintCanvas.setAttribute("height", "500px");
+      drawCell(paintCanvas, element.textContent);
+      container.appendChild(paintCanvas);
+      drawNonogram(element.textContent, paintCanvas);
 
-    const buttonReload = document.createElement("div");
-    buttonReload.classList.add("button-reload");
-    buttonReload.textContent = "Заново";
-    container.insertAdjacentElement("afterbegin", buttonReload);
+      const buttonReload = document.createElement("div");
+      buttonReload.classList.add("button-reload");
+      buttonReload.textContent = "Заново";
+      container.insertAdjacentElement("afterbegin", buttonReload);
 
-    buttonReload.addEventListener("click", function () {
-      resetGame(element.textContent);
+      const backButton = document.createElement("div");
+      backButton.classList.add("button-back");
+      backButton.textContent = "Назад";
+      container.insertAdjacentElement("afterbegin", backButton);
+
+      backButton.addEventListener("click", function () {
+        initMainMenu();
+      });
+
+      buttonReload.addEventListener("click", function () {
+        resetGame(element.textContent);
+      });
     });
   });
-});
+}
+
+initMainMenu();
 
 function resetGame(nameOfResetNonogram) {
-  console.log(nameOfResetNonogram);
+  const container = document.querySelector(".container");
   const currentCanvas = document.querySelector("canvas");
   const winnerMessage = document.querySelector(".winner");
   if (winnerMessage != null) {
@@ -101,8 +115,6 @@ function drawNonogram(nameOfNonogram, canvas) {
     for (let j = 0; j < column; j++) {
       const x = j * 50 + 100;
       const y = i * 50 + 100;
-      // ctx.fillStyle = cell[i][j] === 1 ? "#000" : "#fff";
-      // ctx.fillRect(x, y, 50, 50);
       ctx.strokeRect(x, y, 50, 50);
     }
   }
@@ -261,6 +273,7 @@ function areArraysEqual(arr1, arr2) {
 }
 
 function messageOfWin(nameOfNonogram) {
+  const buttonReload = document.querySelector(".button-reload");
   const containElements = document.querySelector(".winner");
   if (containElements !== null) {
     return;
@@ -268,6 +281,6 @@ function messageOfWin(nameOfNonogram) {
     const winMessage = document.createElement("div");
     winMessage.classList.add("winner");
     winMessage.textContent = `Поздравляю вы отгадали нонограмму "${nameOfNonogram}"`;
-    container.insertAdjacentElement("afterbegin", winMessage);
+    buttonReload.insertAdjacentElement("afterend", winMessage);
   }
 }
