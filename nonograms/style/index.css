@@ -1,0 +1,115 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  background-color: #dce1e6;
+}
+
+#nonogramCanvas {
+  cursor: pointer;
+  text-align: center;
+  width: 500px;
+  height: 500px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0px auto;
+}
+.container .header {
+  padding: 20px;
+  font-size: 45px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+@media (max-width: 760px) {
+  .container .header {
+    font-size: 30px;
+  }
+}
+.container .container__button {
+  font-size: 30px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 20px 60px;
+  border-radius: 20px;
+  border: solid black 1px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.container .container__button:hover {
+  background-color: black;
+  color: white;
+}
+@media (max-width: 760px) {
+  .container .container__button {
+    font-size: 24px;
+    padding: 10px 30px;
+  }
+}
+
+.winner {
+  align-self: center;
+  color: green;
+  font-family: Arial, Helvetica, sans-serif;
+}
+@media (max-width: 760px) {
+  .winner {
+    width: 350px;
+  }
+}
+
+.button-reload {
+  align-self: flex-end;
+  font-size: 24px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 10px 30px;
+  border-radius: 20px;
+  border: solid black 1px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.button-reload:hover {
+  background-color: black;
+  color: white;
+}
+@media (max-width: 760px) {
+  .button-reload {
+    font-size: 24px;
+    padding: 10px 30px;
+    align-self: center;
+  }
+}
+
+.button-back {
+  align-self: first baseline;
+  font-size: 24px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 10px 30px;
+  border-radius: 20px;
+  border: solid black 1px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.button-back:hover {
+  background-color: black;
+  color: white;
+}
+@media (max-width: 760px) {
+  .button-back {
+    font-size: 24px;
+    padding: 10px 30px;
+    align-self: center;
+  }
+}
+
+/*# sourceMappingURL=index.css.map */

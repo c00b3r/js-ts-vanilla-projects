@@ -1,0 +1,117 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body{
+  background-color: #dce1e6;
+}
+
+#nonogramCanvas {
+  cursor: pointer;
+  text-align: center;
+  width: 500px;
+  height: 500px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0px auto;
+
+  .header{
+    padding: 20px;
+    font-size: 45px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    
+    @media (max-width: 760px){
+      font-size: 30px;
+    }
+  }
+
+  .container__button{
+    font-size: 30px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 20px 60px;
+    border-radius: 20px;
+    border: solid black 1px;
+    margin-bottom: 10px;
+    cursor: pointer;
+
+    &:hover{
+      background-color: black;
+      color: white;
+    }
+
+    @media (max-width: 760px) {
+      font-size: 24px;
+      padding: 10px 30px;
+    }
+  }
+  
+}
+
+.winner{
+  align-self:center;
+  color: green;
+  font-family: Arial, Helvetica, sans-serif;
+
+  @media (max-width: 760px) {
+    align-self:flex-start;
+    width: 350px;
+  }
+}
+
+.button-reload{
+  align-self: flex-end;
+  font-size: 24px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 10px 30px;
+  border-radius: 20px;
+  border: solid black 1px;
+  margin-bottom: 10px;
+  cursor: pointer;
+
+  &:hover{
+    background-color: black;
+    color: white;
+  }
+
+  @media (max-width: 760px) {
+    font-size: 24px;
+    padding: 10px 30px;
+    align-self: center;
+  }
+}
+
+.button-back {
+  align-self: first baseline;
+  font-size: 24px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 10px 30px;
+  border-radius: 20px;
+  border: solid black 1px;
+  margin-bottom: 10px;
+  cursor: pointer;
+
+  &:hover{
+    background-color: black;
+    color: white;
+  }
+
+  @media (max-width: 760px) {
+    font-size: 24px;
+    padding: 10px 30px;
+    align-self: center;
+  }
+}
+
+
