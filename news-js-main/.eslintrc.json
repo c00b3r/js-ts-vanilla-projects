@@ -14,6 +14,7 @@
         "browser": true,
         "node": true
     },
+    "ignorePatterns": ["webpack.config.js"],
     "rules": {
         "no-debugger": "off",
         "no-console": 0,
