@@ -11,7 +11,7 @@ class Loader {
 
     getResp(
         { endpoint, options = {} }: EndpointOption,
-        callback: CallbackFunction<SourcesData | INews> = () => {
+        callback = () => {
             console.error('No callback for GET response');
         }
     ) {
