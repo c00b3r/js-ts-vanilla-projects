@@ -9,7 +9,7 @@ class Loader {
         this.options = options;
     }
 
-    getResp(
+    public getResp(
         { endpoint, options = {} }: EndpointOption,
         callback = () => {
             console.error('No callback for GET response');
@@ -18,7 +18,7 @@ class Loader {
         this.load('GET', endpoint, callback, options);
     }
 
-    errorHandler(res: Response) {
+    private errorHandler(res: Response) {
         if (!res.ok) {
             if (res.status === HTTP_STATUS.UNAUTHORIZED || HTTP_STATUS.NOT_FOUND)
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
@@ -28,7 +28,7 @@ class Loader {
         return res;
     }
 
-    makeUrl(options: RequestOptions, endpoint: string): string {
+    private makeUrl(options: RequestOptions, endpoint: string): string {
         const urlOptions = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
@@ -39,7 +39,7 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    load(
+    private load(
         method: string,
         endpoint: string,
         callback: CallbackFunction<SourcesData | INews>,
