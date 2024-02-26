@@ -7,16 +7,16 @@ export interface EndpointOption {
     options?: RequestOptions;
 }
 
-export interface Source {
+export interface ISource {
     id: string | null;
     name: string;
 }
 
-export interface DataNews {
-    source: Source;
+export interface IDataNews {
+    source: ISource;
     author: string | null;
     title: string;
-    description: string;
+    description: string | null;
     url: string;
     urlToImage: string | null;
     publishedAt: string;
@@ -26,7 +26,7 @@ export interface DataNews {
 export interface INews {
     status: string;
     totalResult: number;
-    articles: DataNews[];
+    articles: IDataNews[];
 }
 
 export interface SourcesData {

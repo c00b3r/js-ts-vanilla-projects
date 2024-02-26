@@ -1,4 +1,4 @@
-import { EndpointOption, RequestOptions } from '../interfaces/interfaces';
+import { EndpointOption, INews, RequestOptions, SourcesData } from '../interfaces/interfaces';
 import { CallbackFunction } from '../types/types';
 
 class Loader {
@@ -11,7 +11,7 @@ class Loader {
 
     getResp(
         { endpoint, options = {} }: EndpointOption,
-        callback: CallbackFunction = () => {
+        callback: CallbackFunction<SourcesData | INews> = () => {
             console.error('No callback for GET response');
         }
     ) {
@@ -39,7 +39,12 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    load(method: string, endpoint: string, callback: CallbackFunction, options: RequestOptions = {}) {
+    load(
+        method: string,
+        endpoint: string,
+        callback: CallbackFunction<SourcesData | INews>,
+        options: RequestOptions = {}
+    ) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())
