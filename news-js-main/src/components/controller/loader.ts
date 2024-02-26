@@ -1,5 +1,5 @@
 import { EndpointOption, INews, RequestOptions, SourcesData } from '../interfaces/interfaces';
-import { CallbackFunction } from '../types/types';
+import { CallbackFunction, HTTP_STATUS } from '../types/types';
 
 class Loader {
     baseLink: string;
@@ -20,7 +20,7 @@ class Loader {
 
     errorHandler(res: Response) {
         if (!res.ok) {
-            if (res.status === 401 || res.status === 404)
+            if (res.status === HTTP_STATUS.UNAUTHORIZED || HTTP_STATUS.NOT_FOUND)
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
             throw Error(res.statusText);
         }
