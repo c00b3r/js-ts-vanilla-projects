@@ -13,13 +13,18 @@ const baseConfig = {
                 test: /\.css$/i,
                 use: ['style-loader', 'css-loader'],
             },
+            {
+                test: /\.tsx?$/, // Match TypeScript files
+                use: 'ts-loader', // Use ts-loader for .ts and .tsx files
+                exclude: /node_modules/, // Exclude node_modules directory
+            },
         ],
     },
     resolve: {
-        extensions: ['.ts'],
+        extensions: ['.tsx', '.ts', '.js'],
     },
     output: {
-        filename: 'index.ts',
+        filename: 'bundle.js',
         path: path.resolve(__dirname, './dist'),
     },
     plugins: [
