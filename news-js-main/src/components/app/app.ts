@@ -10,9 +10,8 @@ class App {
     }
 
     start(): void {
-        document
-            .querySelector('.sources')
-            .addEventListener('click', (e) => this.controller.getNews(e, (data) => this.view.drawNews(data)));
+        const sources = document.querySelector('.sources') as HTMLElement;
+        sources.addEventListener('click', (e) => this.controller.getNews(e, (data) => this.view.drawNews(data)));
         this.controller.getSources((data) => this.view.drawSources(data));
     }
 }

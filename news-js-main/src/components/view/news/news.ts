@@ -1,7 +1,9 @@
 import './news.css';
 
+type CallbackFunctionForData = (_item: string, idx: number) => void;
+
 class News {
-    draw(data) {
+    draw(data): void {
         const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
 
         const fragment = document.createDocumentFragment();

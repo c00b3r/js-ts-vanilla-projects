@@ -1,20 +1,29 @@
 import './sources.css';
+import { Source } from '../../interfaces/interfaces';
 
 class Sources {
-    draw(data) {
+    draw(data: Source[]) {
         const fragment = document.createDocumentFragment();
-        const sourceItemTemp = document.querySelector('#sourceItemTemp');
+        const sourceItemTemp = document.querySelector<HTMLTemplateElement>('#sourceItemTemp');
 
-        data.forEach((item) => {
-            const sourceClone = sourceItemTemp.content.cloneNode(true);
+        if (sourceItemTemp) {
+            data.forEach((item) => {
+                const sourceClone = sourceItemTemp.content.cloneNode(true) as HTMLElement;
+                const nameElement = sourceClone.querySelector('.source__item-name');
+                const itemElement = sourceClone.querySelector('.source__item');
 
-            sourceClone.querySelector('.source__item-name').textContent = item.name;
-            sourceClone.querySelector('.source__item').setAttribute('data-source-id', item.id);
+                if (nameElement && itemElement) {
+                    nameElement.textContent = item.name;
+                    itemElement.setAttribute('data-source-id', item.id);
 
-            fragment.append(sourceClone);
-        });
+                    fragment.append(sourceClone);
+                }
+            });
+        } else {
+            console.error('Template element #sourceItemTemp not found');
+        }
 
-        document.querySelector('.sources').append(fragment);
+        document.querySelector('.sources')!.append(fragment);
     }
 }
 
