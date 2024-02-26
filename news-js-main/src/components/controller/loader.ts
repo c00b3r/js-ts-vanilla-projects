@@ -1,17 +1,10 @@
-type CallbackFunction = () => void;
-interface RequestOptions {
-    [key: string]: string | undefined;
-}
-
-interface EndpointOption {
-    endpoint: string;
-    options: RequestOptions;
-}
+import { EndpointOption, RequestOptions } from '../interfaces/interfaces';
+import { CallbackFunction } from '../types/types';
 
 class Loader {
-    baseLink: string | undefined;
-    options: { [key: string]: string | undefined };
-    constructor(baseLink: string | undefined, options: { [key: string]: string | undefined }) {
+    baseLink: string;
+    options: { [key: string]: string };
+    constructor(baseLink: string, options: { [key: string]: string }) {
         this.baseLink = baseLink;
         this.options = options;
     }
@@ -46,7 +39,7 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    load(method: string, endpoint: string, callback: CallbackFunction, options = {}) {
+    load(method: string, endpoint: string, callback: CallbackFunction, options: RequestOptions = {}) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())
