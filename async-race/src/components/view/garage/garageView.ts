@@ -1,4 +1,7 @@
 import "./garageView.css";
+import { dataOfCars } from "./api";
+
+let countOfCars: number;
 
 const createControlPanel = () => {
   const controlPanel = `<div class="carsCreate">
@@ -31,4 +34,7 @@ const createGarageView = (countOfCar: number) => {
 };
 
 createControlPanel();
-createGarageView(4);
+dataOfCars.then((data) => {
+  countOfCars = data.length;
+  createGarageView(countOfCars);
+});

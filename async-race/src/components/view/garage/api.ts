@@ -2,7 +2,7 @@ const url = "http://127.0.0.1:3000";
 
 const garageEndpoint = `${url}/garage`;
 
-async function fetchGarageData() {
+export const fetchGarageData = async () => {
   try {
     const response = await fetch(garageEndpoint);
     if (!response.ok) {
@@ -13,6 +13,16 @@ async function fetchGarageData() {
     console.error("Error fetching garage data:", error);
     throw error;
   }
-}
+};
 
-export default fetchGarageData;
+const getDataOfCars = async () => {
+  try {
+    const data = await fetchGarageData();
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+export const dataOfCars = getDataOfCars();
