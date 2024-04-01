@@ -43,7 +43,7 @@ const configureOneCar = (name: string, color: string, id: number) => {
     <button class="button btn-start-engine" id="start-${id}">A</button>
     <button class="button btn-stop-engine" id="stop-${id}">B</button>
     ${createImageCar(color)}
-    <img class="flag" src="../img/flag.png" alt="flag" width="35px" height="35px"/>
+    <img class="flag" src="./img/flag.png" alt="flag" width="35px" height="35px"/>
   </div>`;
 };
 
