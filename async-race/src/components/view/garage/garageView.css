@@ -1,0 +1,10 @@
+.create-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.buttons-controller {
+  display: flex;
+  gap: 4px;
+}
