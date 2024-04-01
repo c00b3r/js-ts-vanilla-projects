@@ -26,3 +26,23 @@ const getDataOfCars = async () => {
 };
 
 export const dataOfCars = getDataOfCars();
+
+export const createCar = async (body: object) => {
+  await fetch(garageEndpoint, {
+    method: "POST",
+    body: JSON.stringify(body),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+};
+
+export const updateCarAPI = async (body: object, id: number) => {
+  await fetch(`${garageEndpoint}/${id}`, {
+    method: "PUT",
+    body: JSON.stringify(body),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+};
