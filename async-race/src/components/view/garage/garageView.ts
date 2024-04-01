@@ -1,5 +1,6 @@
 import "./garageView.css";
 import { dataOfCars } from "./api";
+import createImageCar from "../../../utils";
 
 let countOfCars: number;
 
@@ -33,8 +34,41 @@ const createGarageView = (countOfCar: number) => {
   document.body.append(div);
 };
 
+interface ICar {
+  name: string;
+  color: string;
+  id: number;
+}
+
+const configureOneCar = (name: string, color: string) => {
+  return `<div class="edit-car">
+    <button class="button btn-select-car">select</button><button class="button btn-remove-car">remove</button><span class='nameCar'>${name}</span>
+  </div>
+  <div class="control-car">
+    <button class="button btn-start-engine">A</button>
+    <button class="button btn-stop-engine">B</button>
+    ${createImageCar(color)}
+    <img class="flag" src="../img/flag.png" alt="flag" width="35px" height="35px"/>
+  </div>`;
+};
+
+const viewCarOnGarage = (data: ICar[]) => {
+  const carsContainer = document.createElement("div");
+  carsContainer.classList.toggle("cars-container");
+  for (let i = 0; i < data.length; i += 1) {
+    const car = document.createElement("div");
+    car.classList.toggle("car");
+    car.innerHTML = configureOneCar(data[i].name, data[i].color);
+    carsContainer.append(car);
+  }
+  document.body.append(carsContainer);
+};
+
 createControlPanel();
-dataOfCars.then((data) => {
-  countOfCars = data.length;
-  createGarageView(countOfCars);
-});
+dataOfCars
+  .then((data) => {
+    countOfCars = data.length;
+    createGarageView(countOfCars);
+    viewCarOnGarage(data);
+  })
+  .catch(() => createGarageView(404));

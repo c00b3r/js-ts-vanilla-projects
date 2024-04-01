@@ -8,3 +8,64 @@
   display: flex;
   gap: 4px;
 }
+
+.cars-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.car {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.edit-car {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.control-car {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  max-width: 1980px;
+}
+
+.flag {
+  margin-left: auto;
+  margin-right: 20px;
+}
+
+.btn-start-engine {
+  padding: 5px;
+  font-size: 18px;
+}
+
+.btn-stop-engine {
+  padding: 5px;
+  font-size: 18px;
+  background-color: red;
+}
+
+.btn-select-car {
+  background-color: rgb(162, 211, 211);
+  color: black;
+  font-size: 16px;
+  padding: 10px;
+}
+
+.btn-remove-car {
+  background-color: rgb(162, 211, 211);
+  color: black;
+  font-size: 16px;
+  padding: 10px;
+}
+
+.nameCar {
+  font-size: 20px;
+  color: rgb(39, 5, 5);
+  align-self: center;
+}
