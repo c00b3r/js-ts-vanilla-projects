@@ -4,7 +4,6 @@ import createImageCar from "../../../utils";
 import { ICar } from "../../interface";
 
 let countOfCars = 0;
-let dataCars: ICar[];
 
 const createControlPanel = () => {
   const controlPanel = `<div class="carsCreate">
@@ -60,20 +59,24 @@ export const viewCarOnGarage = (data: ICar[]) => {
   document.body.append(carsContainer);
 };
 
-export const updateCarView = () => {
+export const updateCarView = (newDataCars: ICar[]) => {
   const currentCarsContainer = document.querySelector(
     // eslint-disable-next-line prettier/prettier
     ".cars-container"
   ) as HTMLElement;
+  const currentGarageContainer = document.querySelector(
+    // eslint-disable-next-line prettier/prettier
+    ".garage-container"
+  ) as HTMLElement;
   currentCarsContainer.remove();
-  viewCarOnGarage(dataCars);
-  createGarageView(dataCars.length);
+  currentGarageContainer.remove();
+  createGarageView(newDataCars.length);
+  viewCarOnGarage(newDataCars);
 };
 
 dataOfCars
   .then((data) => {
     console.log(data);
-    dataCars = data;
     countOfCars = data.length;
     createGarageView(countOfCars);
     viewCarOnGarage(data);

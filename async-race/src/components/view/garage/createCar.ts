@@ -1,5 +1,5 @@
 // import configureOneCar from "./garageView";
-import { createCar } from "./api";
+import { createCar, fetchGarageData } from "./api";
 import { updateCarView } from "./garageView";
 
 const buttonCreateCar = document.querySelector(
@@ -16,13 +16,15 @@ const carColorInput: HTMLInputElement = document.querySelector(
 ) as HTMLInputElement;
 
 if (buttonCreateCar) {
-  buttonCreateCar.addEventListener("click", () => {
-    // eslint-disable-next-line prettier/prettier
+  buttonCreateCar.addEventListener("click", async () => {
     const valueName = carNameInput.value;
     const valueColor = carColorInput.value;
-    createCar({ name: valueName, color: valueColor }).then(() =>
-      // eslint-disable-next-line prettier/prettier
-      updateCarView()
-    );
+    try {
+      await createCar({ name: valueName, color: valueColor });
+      const updatedData = await fetchGarageData();
+      updateCarView(updatedData);
+    } catch (error) {
+      console.error("Failed to create car:", error);
+    }
   });
 }
