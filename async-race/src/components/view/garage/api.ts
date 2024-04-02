@@ -37,6 +37,12 @@ export const createCar = async (body: object) => {
   });
 };
 
+export const deleteCarAPI = async (id: number) => {
+  await fetch(`${garageEndpoint}/${id}`, {
+    method: "DELETE",
+  });
+};
+
 export const updateCarAPI = async (body: object, id: number) => {
   await fetch(`${garageEndpoint}/${id}`, {
     method: "PUT",

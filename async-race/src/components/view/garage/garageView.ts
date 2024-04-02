@@ -37,7 +37,9 @@ const createGarageView = (countOfCar: number) => {
 
 const configureOneCar = (name: string, color: string, id: number) => {
   return `<div class="edit-car">
-    <button class="button btn-select-car">select</button><button class="button btn-remove-car">remove</button><span class='nameCar'>${name}</span>
+    <button class="button btn-select-car">select</button>
+    <button class="button btn-remove-car" id="${id}">remove</button>
+    <span class='nameCar'>${name}</span>
   </div>
   <div class="control-car">
     <button class="button btn-start-engine" id="start-${id}">A</button>

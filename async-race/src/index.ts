@@ -4,3 +4,4 @@ import "./components/header";
 import "./components/view/garage/garageView";
 import "./components/view/img/car.svg";
 import "./components/view/garage/createCar";
+import "./components/view/garage/deleteCar";
