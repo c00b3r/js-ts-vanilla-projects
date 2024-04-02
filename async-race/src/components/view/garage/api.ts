@@ -27,7 +27,7 @@ const getDataOfCars = async () => {
 
 export const dataOfCars = getDataOfCars();
 
-export const createCar = async (body: object) => {
+export const createCarAPI = async (body: object) => {
   await fetch(garageEndpoint, {
     method: "POST",
     body: JSON.stringify(body),

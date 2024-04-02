@@ -12,8 +12,8 @@ const createControlPanel = () => {
     <button class="button btn-create-car">Create</button>
   </div>
   <div class="carsUpdate">
-      <input type="text" readonly="readonly"/>
-      <input type="color" name="" id="" />
+      <input type="text" readonly="readonly" class="cars-update-name"/>
+      <input type="color" name="" id="" class="cars-update-color" />
       <button class="button btn-update-car">Update</button>
     </div>
     <div class="buttons-controller">
@@ -37,7 +37,7 @@ const createGarageView = (countOfCar: number) => {
 
 const configureOneCar = (name: string, color: string, id: number) => {
   return `<div class="edit-car">
-    <button class="button btn-select-car">select</button>
+    <button class="button btn-select-car" id="${id}">select</button>
     <button class="button btn-remove-car" id="${id}">remove</button>
     <span class='nameCar'>${name}</span>
   </div>

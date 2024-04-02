@@ -1,5 +1,5 @@
 // import configureOneCar from "./garageView";
-import { createCar, fetchGarageData } from "./api";
+import { createCarAPI, fetchGarageData } from "./api";
 import { updateCarView } from "./garageView";
 
 const buttonCreateCar = document.querySelector(
@@ -20,7 +20,7 @@ if (buttonCreateCar) {
     const valueName = carNameInput.value;
     const valueColor = carColorInput.value;
     try {
-      await createCar({ name: valueName, color: valueColor });
+      await createCarAPI({ name: valueName, color: valueColor });
       const updatedData = await fetchGarageData();
       updateCarView(updatedData);
     } catch (error) {
