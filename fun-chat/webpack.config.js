@@ -38,14 +38,10 @@ module.exports = {
         test: /\.(jpg|png|svg|jpeg|gif)$/,
         type: "asset/resource",
       },
-    ],
-    rules: [
       {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
       },
-    ],
-    rules: [
       {
         test: /\.ts$/i,
         use: "ts-loader",
@@ -56,5 +52,6 @@ module.exports = {
     alias: {
       img: path.join(__dirname, "src", "components", "view", "img"),
     },
+    extensions: [".ts", ".js", ".json"],
   },
 };

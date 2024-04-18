@@ -1,1 +1,1 @@
-import "./style.css";
+import "./components/view/AuthorizationForm/AuthorizationForm";
