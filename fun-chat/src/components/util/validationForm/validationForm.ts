@@ -28,8 +28,16 @@ function validatePassword(password: string): boolean {
     passwordError.textContent = `Длина должна быть более ${minLength} символов.`;
     return false;
   }
-  if (!/[A-Z]/.test(password) || !/[a-z]/.test(password)) {
-    passwordError.textContent = "Используйте прописные и заглавные буквы";
+  const containsUppercaseLatin = /[A-Z]/.test(password);
+  const containsLowercaseLatin = /[a-z]/.test(password);
+  const containsUppercaseCyrillic = /[А-ЯЁ]/.test(password);
+  const containsLowercaseCyrillic = /[а-яё]/.test(password);
+  if (
+    !(containsUppercaseLatin && containsLowercaseLatin) &&
+    !(containsUppercaseCyrillic && containsLowercaseCyrillic)
+  ) {
+    passwordError.textContent =
+      "Используйте и прописные, и заглавные буквы латиницы или кириллицы";
     return false;
   }
 
@@ -38,8 +46,8 @@ function validatePassword(password: string): boolean {
 }
 
 function updateButtonState() {
-  const isLoginValid = validateLogin(inputLogin.value);
-  const isPasswordValid = validatePassword(inputPassword.value);
+  const isLoginValid: boolean = validateLogin(inputLogin.value);
+  const isPasswordValid: boolean = validatePassword(inputPassword.value);
 
   buttonLogin.disabled = !(isLoginValid && isPasswordValid);
 }
