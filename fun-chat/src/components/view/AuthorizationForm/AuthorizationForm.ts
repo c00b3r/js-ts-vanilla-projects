@@ -4,21 +4,23 @@ const form = document.createElement("form");
 const fieldset = document.createElement("fieldset");
 
 const createInputUser = () => {
-  const inputUserLogin = `
+  const inputUserLoginHTML = `
   <div class="style-input">
   <label>Имя</label>
-  <input class="input" type="text" label="Имя" placeholder="Введите имя">
+  <input class="input input-login" type="text" label="Имя" placeholder="Введите имя" required pattern=".{4,}" required>
   </div>
+  <div id="login-error" style="color: red;"></div>
 `;
 
-  const inputUserPassword = `
+  const inputUserPasswordHTML = `
   <div class="style-input">
   <label>Пароль</label>
-  <input class="input" type="password" placeholder="Введите пароль">
+  <input class="input input-password" placeholder="Введите пароль" type="password" pattern="(?=.*[a-z])(?=.*[A-Z]).{4,}"  required>
   </div>
+  <div id="password-error" style="color: red;"></div>
  `;
 
-  fieldset.innerHTML = inputUserLogin + inputUserPassword;
+  fieldset.innerHTML = inputUserLoginHTML + inputUserPasswordHTML;
 };
 
 const createFormBody = () => {
@@ -34,15 +36,11 @@ const createFormBody = () => {
   form.append(fieldset);
 
   const buttonAuthorization = document.createElement("button");
+  // buttonAuthorization.setAttribute("disabled", "true");
   buttonAuthorization.textContent = "Войти";
   buttonAuthorization.classList.add("button-authorization");
 
-  const buttonInfo = document.createElement("button");
-  buttonInfo.textContent = "Информация";
-  buttonInfo.classList.add("button-info");
-
   form.appendChild(buttonAuthorization);
-  form.appendChild(buttonInfo);
 
   document.body.append(form);
 };
