@@ -36,7 +36,8 @@ const createFormBody = () => {
   form.append(fieldset);
 
   const buttonAuthorization = document.createElement("button");
-  // buttonAuthorization.setAttribute("disabled", "true");
+  buttonAuthorization.classList.add("button-login");
+  buttonAuthorization.setAttribute("disabled", "true");
   buttonAuthorization.textContent = "Войти";
   buttonAuthorization.classList.add("button-authorization");
 

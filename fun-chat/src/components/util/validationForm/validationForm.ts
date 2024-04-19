@@ -8,12 +8,14 @@ const inputPassword = document.querySelector(
 ) as HTMLInputElement;
 const passwordError = document.getElementById("password-error") as HTMLElement;
 const loginError = document.getElementById("login-error") as HTMLElement;
+const buttonLogin = document.querySelector(
+  ".button-login",
+) as HTMLButtonElement;
 
 function validateLogin(login: string): boolean {
   const minLength = 4;
   if (login.length <= minLength) {
     loginError.textContent = `Длина должна быть более ${minLength} символов.`;
-    // console.error(`Login should be longer than ${minLength} characters.`);
   } else {
     loginError.textContent = "";
   }
@@ -35,10 +37,12 @@ function validatePassword(password: string): boolean {
   return true;
 }
 
-inputLogin.addEventListener("input", () => {
-  validateLogin(inputLogin.value);
-});
+function updateButtonState() {
+  const isLoginValid = validateLogin(inputLogin.value);
+  const isPasswordValid = validatePassword(inputPassword.value);
 
-inputPassword.addEventListener("input", () => {
-  validatePassword(inputPassword.value);
-});
+  buttonLogin.disabled = !(isLoginValid && isPasswordValid);
+}
+
+inputLogin.addEventListener("input", updateButtonState);
+inputPassword.addEventListener("input", updateButtonState);
