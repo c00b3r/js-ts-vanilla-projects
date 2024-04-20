@@ -15,7 +15,7 @@ const createInputUser = () => {
   const inputUserPasswordHTML = `
   <div class="style-input">
   <label>Пароль</label>
-  <input class="input input-password" placeholder="Введите пароль" type="password" pattern="(?=.*[a-z])(?=.*[A-Z]).{4,}"  required>
+  <input class="input input-password" placeholder="Введите пароль" type="password" required>
   </div>
   <div id="password-error" style="color: red;"></div>
  `;
