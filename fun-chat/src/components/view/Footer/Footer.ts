@@ -4,9 +4,9 @@ const Footer = () => {
   const footerDiv = document.createElement("div");
   footerDiv.classList.add("footer");
 
-  const footerText = document.createElement("p");
+  const footerText = document.createElement("h3");
   footerText.classList.add("footer-text");
-  footerText.textContent = "© 2024 - MikAleinik RSSchool";
+  footerText.textContent = "© 2024 MikAleinik RSSchool";
 
   footerDiv.appendChild(footerText);
   return footerDiv;

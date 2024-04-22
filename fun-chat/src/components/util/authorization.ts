@@ -1,11 +1,8 @@
 import { webSocket, incrementIdgen } from "../../api";
-import { WebSocketMessage } from "../../interface";
+import { WebSocketMessage, WebSocketMessageOutcoming } from "../../interface";
 import ChatPage from "../view/Chat/ChatPage";
 
-let isAuthorized: boolean = false;
 const authorization = () => {
-  if (isAuthorized) return;
-
   const buttonLogin = document.querySelector(
     ".button-login",
   ) as HTMLButtonElement;
@@ -13,9 +10,20 @@ const authorization = () => {
   const inputPassword = document.querySelector(
     ".input-password",
   ) as HTMLInputElement;
+  const form = document.querySelector(".form") as HTMLFormElement;
+
+  const isLoginedOnSystem = localStorage.getItem("isLogined");
+  if (isLoginedOnSystem === "true") {
+    const login = localStorage.getItem("login");
+    if (login) {
+      form.style.display = "none";
+      ChatPage(login);
+    }
+  }
 
   buttonLogin.addEventListener("click", (event) => {
     event.preventDefault();
+
     const message: WebSocketMessage = {
       id: `${incrementIdgen()}`,
       type: "USER_LOGIN",
@@ -30,15 +38,16 @@ const authorization = () => {
   });
 
   webSocket.onmessage = function getMessageFromServer(event) {
-    const { type, payload } = JSON.parse(event.data);
+    const { type, payload } = JSON.parse(
+      event.data,
+    ) as WebSocketMessageOutcoming;
     if (type === "USER_LOGIN") {
       const { login } = payload.user;
-      if (login) {
-        isAuthorized = true;
-        const authorizationForm = document.querySelector(
-          ".form",
-        ) as HTMLFormElement;
-        authorizationForm.style.display = "none";
+      const isLogined = payload.user.isLogined || false;
+      if (isLogined) {
+        localStorage.setItem("isLogined", "true");
+        localStorage.setItem("login", login);
+        form.style.display = "none";
         ChatPage(login);
       }
     }

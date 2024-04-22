@@ -1,5 +1,6 @@
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
+import "./ChatPage.css";
 
 const ChatPage = (userName: string) => {
   document.body.innerHTML = "";

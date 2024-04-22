@@ -18,10 +18,23 @@ export interface UserLoginPayload {
   password: string;
 }
 
+export interface UserLoginPayloadOutcoming {
+  login: string;
+  isLogined: string;
+}
+
 export interface WebSocketMessage {
   id: string;
   type: string;
   payload: {
     user: UserLoginPayload;
+  };
+}
+
+export interface WebSocketMessageOutcoming {
+  id: string;
+  type: string;
+  payload: {
+    user: UserLoginPayloadOutcoming;
   };
 }

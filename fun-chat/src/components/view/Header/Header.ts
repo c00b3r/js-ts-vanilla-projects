@@ -6,7 +6,7 @@ const Header = (userName: string) => {
 
   const headerProfileInfo = document.createElement("h3");
   headerProfileInfo.classList.add("text-profile");
-  headerProfileInfo.textContent = `Пользователь ${userName}`;
+  headerProfileInfo.textContent = `Пользователь: ${userName}`;
   headerDiv.append(headerProfileInfo);
 
   const buttonExit = document.createElement("button");
