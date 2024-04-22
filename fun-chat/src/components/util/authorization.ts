@@ -1,7 +1,11 @@
 import { webSocket, incrementIdgen } from "../../api";
 import { WebSocketMessage } from "../../interface";
+import ChatPage from "../view/Chat/ChatPage";
 
+let isAuthorized: boolean = false;
 const authorization = () => {
+  if (isAuthorized) return;
+
   const buttonLogin = document.querySelector(
     ".button-login",
   ) as HTMLButtonElement;
@@ -10,7 +14,8 @@ const authorization = () => {
     ".input-password",
   ) as HTMLInputElement;
 
-  buttonLogin.addEventListener("click", () => {
+  buttonLogin.addEventListener("click", (event) => {
+    event.preventDefault();
     const message: WebSocketMessage = {
       id: `${incrementIdgen()}`,
       type: "USER_LOGIN",
@@ -23,6 +28,21 @@ const authorization = () => {
     };
     webSocket.send(JSON.stringify(message));
   });
+
+  webSocket.onmessage = function getMessageFromServer(event) {
+    const { type, payload } = JSON.parse(event.data);
+    if (type === "USER_LOGIN") {
+      const { login } = payload.user;
+      if (login) {
+        isAuthorized = true;
+        const authorizationForm = document.querySelector(
+          ".form",
+        ) as HTMLFormElement;
+        authorizationForm.style.display = "none";
+        ChatPage(login);
+      }
+    }
+  };
 };
 
 authorization();
