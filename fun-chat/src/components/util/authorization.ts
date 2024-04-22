@@ -50,6 +50,14 @@ const authorization = () => {
         form.style.display = "none";
         ChatPage(login);
       }
+    } else if (type === "ERROR") {
+      const errorMessage: string | undefined = payload.error;
+      if (errorMessage) {
+        const errorElement = document.createElement("div");
+        errorElement.textContent = errorMessage;
+        errorElement.classList.add("error-message");
+        form.appendChild(errorElement);
+      }
     }
   };
 };

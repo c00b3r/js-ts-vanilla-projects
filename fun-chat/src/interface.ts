@@ -36,5 +36,6 @@ export interface WebSocketMessageOutcoming {
   type: string;
   payload: {
     user: UserLoginPayloadOutcoming;
+    error?: string | undefined;
   };
 }
