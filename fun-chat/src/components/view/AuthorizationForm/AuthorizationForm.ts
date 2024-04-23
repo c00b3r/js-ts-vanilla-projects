@@ -21,13 +21,15 @@ const createInputUser = () => {
  `;
 
   fieldset.innerHTML = inputUserLoginHTML + inputUserPasswordHTML;
+
+  return fieldset;
 };
 
 const createFormBody = () => {
   form.classList.add("form");
   fieldset.classList.add("input-wrapper");
 
-  createInputUser();
+  form.appendChild(createInputUser());
 
   const legend = document.createElement("legend");
   legend.textContent = "Авторизация";
@@ -35,21 +37,35 @@ const createFormBody = () => {
 
   form.append(fieldset);
 
-  const buttonAuthorization = document.createElement("button");
-  buttonAuthorization.classList.add("button-login");
-  buttonAuthorization.setAttribute("disabled", "true");
-  buttonAuthorization.textContent = "Войти";
-  buttonAuthorization.classList.add("button-authorization");
+  if (!document.getElementById("login-button")) {
+    const buttonAuthorization = document.createElement("button");
+    buttonAuthorization.classList.add("button-login");
+    buttonAuthorization.setAttribute("disabled", "true");
+    buttonAuthorization.textContent = "Войти";
+    buttonAuthorization.setAttribute("id", "login-button");
+    form.append(buttonAuthorization);
+  } else {
+    const buttonAuthorization = document.getElementById(
+      "login-button",
+    ) as HTMLButtonElement;
+    buttonAuthorization.disabled = false;
+  }
 
-  form.appendChild(buttonAuthorization);
+  return form;
+};
 
-  document.body.append(form);
+const removeExistingForm = () => {
+  const existingForm = document.querySelector(".form");
+  if (existingForm) {
+    existingForm.remove();
+  }
 };
 
 const AuthorizationForm = () => {
-  createFormBody();
+  removeExistingForm();
+  return createFormBody();
 };
 
-AuthorizationForm();
+document.body.append(AuthorizationForm());
 
 export default AuthorizationForm;

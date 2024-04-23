@@ -47,15 +47,17 @@ const authorization = () => {
       if (isLogined) {
         localStorage.setItem("isLogined", "true");
         localStorage.setItem("login", login);
+        localStorage.setItem("password", inputPassword.value);
         form.style.display = "none";
         ChatPage(login);
+        buttonLogin.remove();
       }
     } else if (type === "ERROR") {
       const errorMessage: string | undefined = payload.error;
       if (errorMessage) {
-        const errorElement = document.createElement("div");
-        errorElement.textContent = errorMessage;
+        const errorElement = document.createElement("div") as HTMLElement;
         errorElement.classList.add("error-message");
+        errorElement.textContent = errorMessage;
         form.appendChild(errorElement);
       }
     }

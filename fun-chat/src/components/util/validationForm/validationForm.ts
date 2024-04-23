@@ -9,7 +9,7 @@ const inputPassword = document.querySelector(
 const passwordError = document.getElementById("password-error") as HTMLElement;
 const loginError = document.getElementById("login-error") as HTMLElement;
 const buttonLogin = document.querySelector(
-  ".button-login",
+  "#login-button",
 ) as HTMLButtonElement;
 
 function validateLogin(login: string): boolean {
@@ -54,3 +54,5 @@ function updateButtonState() {
 
 inputLogin.addEventListener("input", updateButtonState);
 inputPassword.addEventListener("input", updateButtonState);
+
+export default updateButtonState;
