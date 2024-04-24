@@ -1,3 +1,4 @@
+import validationForm from "../../util/validationForm/validationForm";
 import "./AuthorizationForm.css";
 
 const createInputUser = (fieldset: HTMLFieldSetElement) => {
@@ -71,7 +72,14 @@ const removeExistingForm = () => {
 
 const AuthorizationForm = () => {
   removeExistingForm();
-  return createFormBody();
+  const form = createFormBody();
+  const inputLogin = form.querySelector(".input-login") as HTMLInputElement;
+  const inputPassword = form.querySelector(
+    ".input-password",
+  ) as HTMLInputElement;
+  document.body.append(form);
+  validationForm(inputLogin, inputPassword);
+  return form;
 };
 
 document.body.append(AuthorizationForm());
