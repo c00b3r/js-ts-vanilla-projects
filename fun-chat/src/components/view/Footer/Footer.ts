@@ -6,7 +6,7 @@ const Footer = () => {
 
   const footerText = document.createElement("h3");
   footerText.classList.add("footer-text");
-  footerText.textContent = "© 2024 MikAleinik RSSchool";
+  footerText.textContent = "© 2024 c00b3r RSSchool";
 
   footerDiv.appendChild(footerText);
   return footerDiv;

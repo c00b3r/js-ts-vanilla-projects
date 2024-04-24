@@ -1,35 +1,43 @@
 import "./AuthorizationForm.css";
 
-const form = document.createElement("form");
-const fieldset = document.createElement("fieldset");
+const createInputUser = (fieldset: HTMLFieldSetElement) => {
+  const inputUserLoginDiv = document.createElement("div");
+  inputUserLoginDiv.classList.add("style-input");
+  inputUserLoginDiv.innerHTML = `
+    <label>Имя</label>
+    <input class="input input-login" type="text" label="Имя" placeholder="Введите имя" required pattern=".{4,}" required>
+  `;
+  fieldset.appendChild(inputUserLoginDiv);
 
-const createInputUser = () => {
-  const inputUserLoginHTML = `
-  <div class="style-input">
-  <label>Имя</label>
-  <input class="input input-login" type="text" label="Имя" placeholder="Введите имя" required pattern=".{4,}" required>
-  </div>
-  <div id="login-error" style="color: red;"></div>
-`;
+  const loginErrorDiv = document.createElement("div");
+  loginErrorDiv.id = "login-error";
+  loginErrorDiv.style.color = "red";
+  fieldset.appendChild(loginErrorDiv);
 
-  const inputUserPasswordHTML = `
-  <div class="style-input">
-  <label>Пароль</label>
-  <input class="input input-password" placeholder="Введите пароль" type="password" required>
-  </div>
-  <div id="password-error" style="color: red;"></div>
- `;
+  const inputUserPasswordDiv = document.createElement("div");
+  inputUserPasswordDiv.classList.add("style-input");
+  inputUserPasswordDiv.innerHTML = `
+    <label>Пароль</label>
+    <input class="input input-password" placeholder="Введите пароль" type="password" required>
+  `;
+  fieldset.appendChild(inputUserPasswordDiv);
 
-  fieldset.innerHTML = inputUserLoginHTML + inputUserPasswordHTML;
+  const passwordErrorDiv = document.createElement("div");
+  passwordErrorDiv.id = "password-error";
+  passwordErrorDiv.style.color = "red";
+  fieldset.appendChild(passwordErrorDiv);
 
   return fieldset;
 };
 
 const createFormBody = () => {
+  const form = document.createElement("form");
+  const fieldset = document.createElement("fieldset");
+
   form.classList.add("form");
   fieldset.classList.add("input-wrapper");
 
-  form.appendChild(createInputUser());
+  form.appendChild(createInputUser(fieldset));
 
   const legend = document.createElement("legend");
   legend.textContent = "Авторизация";

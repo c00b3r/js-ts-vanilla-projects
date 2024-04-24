@@ -4,8 +4,6 @@ import AuthorizationForm from "../view/AuthorizationForm/AuthorizationForm";
 const logout = () => {
   const isLoginedOnSystem = localStorage.getItem("isLogined");
 
-  console.log(localStorage.getItem("login"));
-
   const logoutMessage = {
     id: `${incrementIdgen()}`,
     type: "USER_LOGOUT",
@@ -26,7 +24,7 @@ const logout = () => {
   if (isLoginedOnSystem === "true") {
     authorizationForm.style.display = "flex";
   }
-  document.body.appendChild(authorizationForm);
+  document.body.appendChild(AuthorizationForm());
 };
 
 export default logout;

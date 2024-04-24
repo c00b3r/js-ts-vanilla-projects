@@ -43,14 +43,13 @@ const authorization = () => {
     ) as WebSocketMessageOutcoming;
     if (type === "USER_LOGIN") {
       const { login } = payload.user;
-      const isLogined = payload.user.isLogined || false;
-      if (isLogined) {
+      const isLoginedUser = payload.user.isLogined;
+      if (isLoginedUser) {
         localStorage.setItem("isLogined", "true");
         localStorage.setItem("login", login);
         localStorage.setItem("password", inputPassword.value);
         form.style.display = "none";
         ChatPage(login);
-        buttonLogin.remove();
       }
     } else if (type === "ERROR") {
       const errorMessage: string | undefined = payload.error;

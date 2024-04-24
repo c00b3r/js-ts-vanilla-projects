@@ -20,7 +20,7 @@ export interface UserLoginPayload {
 
 export interface UserLoginPayloadOutcoming {
   login: string;
-  isLogined: string;
+  isLogined: boolean;
 }
 
 export interface WebSocketMessage {

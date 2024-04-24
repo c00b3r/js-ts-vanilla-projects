@@ -2,6 +2,7 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import "./ChatPage.css";
 import logout from "../../util/logout";
+import UserList from "../UserList/UserList";
 
 const ChatPage = (userName: string) => {
   document.body.innerHTML = "";
@@ -9,6 +10,7 @@ const ChatPage = (userName: string) => {
   mainPage.classList.add("main-page");
 
   mainPage.append(Header(userName));
+  UserList();
   mainPage.append(Footer());
 
   document.body.append(mainPage);
