@@ -39,3 +39,8 @@ export interface WebSocketMessageOutcoming {
     error?: string | undefined;
   };
 }
+
+export interface user {
+  login: string;
+  isLogined: boolean;
+}

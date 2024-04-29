@@ -5,15 +5,18 @@ import logout from "../../util/logout";
 import UserList from "../UserList/UserList";
 
 const ChatPage = (userName: string) => {
-  document.body.innerHTML = "";
+  const appContainer = document.createElement("div");
+  appContainer.id = "app-container";
+  document.body.appendChild(appContainer);
+
   const mainPage = document.createElement("main");
   mainPage.classList.add("main-page");
 
   mainPage.append(Header(userName));
-  UserList();
+  mainPage.append(UserList());
   mainPage.append(Footer());
 
-  document.body.append(mainPage);
+  appContainer.appendChild(mainPage);
 
   const buttonExit = document.querySelector(
     ".button-exit",
